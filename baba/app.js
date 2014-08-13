@@ -38,7 +38,7 @@ const LoopBtnCount = 5;
  * 同时显示几个请求按钮
  * @type {number}
  */
-const ReqBtnCount = 8;
+var ReqBtnCount = 2;
 
 /**
  * 循环按钮是正方形,这是他的在屏幕上真正显示的边长
@@ -164,15 +164,7 @@ function create() {
 	AnswerBtnBorder = game.add.sprite(2 * LoopBtnDisplaySize - 2, DisPlay.Height - LoopBtnDisplaySize - 2, 'border');
 	AnswerBtnBorder.scale.set(ShouldScale);
 
-	//生成所有的请求按钮,顺时针旋转平均分
-	for (var i = 0; i < ReqBtnCount; i++) {
-		var distance = Boy.width;
-		var degree = 2 * Math.PI * i / ReqBtnCount;
-		var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i);
-		one.anchor.set(0.5);
-		one.scale.set(ShouldScale);
-		ReqBtnList[i] = one;
-	}
+	buildReq();
 
 	updateReq();
 }
@@ -188,14 +180,36 @@ function goNext() {
 }
 
 /**
+ * 生成所有的请求按钮,顺时针旋转平均分
+ */
+function buildReq() {
+	//先清空原来所有的
+	for (var i = 0; i < ReqBtnList.length; i++) {
+		ReqBtnList[i].destroy();
+	}
+	for (var i = 0; i < ReqBtnCount; i++) {
+		var distance = Boy.width;
+		var degree = 2 * Math.PI * i / ReqBtnCount;
+		var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i);
+		one.anchor.set(0.5);
+		one.scale.set(ShouldScale);
+		ReqBtnList[i] = one;
+	}
+}
+/**
  * 更新请求状态
  */
 function updateReq(beginIndex) {
+	Boy.play('req');
+	if (score != 0 && score % 3 == 0) {//分数每增加3分就增加一个请求按钮
+		ReqBtnCount++;
+		buildReq();
+		return;
+	}
 	for (var i = beginIndex; i < ReqBtnList.length - 1; i++) {
 		ReqBtnList[i].frame = ReqBtnList[i + 1].frame;
 	}
 	ReqBtnList[ReqBtnList.length - 1].frame = Math.floor(Math.random() * LoopBtnSumCount);
-	Boy.play('req');
 }
 
 /**
@@ -239,6 +253,7 @@ function render() {
 }
 
 function restartGame() {
+	score = 0;
 	alert('游戏结束,分数为' + score + '重新开始');
 	game.state.start('main');
 }
