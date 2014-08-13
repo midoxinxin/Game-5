@@ -101,6 +101,11 @@ var MarchAnimaBtn;
  */
 var Boy;
 
+/**
+ * 显示给用户的文字
+ */
+var ShowLabel;
+
 var game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
 
 var main_state = {
@@ -131,6 +136,9 @@ function create() {
 	MarchAnimaBtn.scale.set(ShouldScale);
 	MarchAnimaBtn.exists = false;
 	game.physics.enable(MarchAnimaBtn);
+
+	//生成显示给用户的文字
+	ShowLabel = game.add.text(10, 10, '0分');
 
 	//设置中间小孩的位置和动画
 	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 3, 'boy', 0);
@@ -198,6 +206,7 @@ function checkNow() {
 	for (var i = 0; i < ReqBtnList.length; i++) {
 		if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
 			score++;
+			ShowLabel.text = score + '分';
 			showMarchAnima(i);
 			return;
 		}
@@ -227,7 +236,6 @@ function update() {
 }
 
 function render() {
-	game.debug.text(score + '分', 100, 100, 'red');
 }
 
 function restartGame() {
