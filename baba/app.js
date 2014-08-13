@@ -243,7 +243,7 @@ function showMarchAnima(desIndex) {
 		Boy.play('happy');
 	}, this);
 	tween.start();
-	timer.add(DelayTime * Math.random() * 5, updateReq, this, desIndex);
+	timer.add(DelayTime * 2, updateReq, this, desIndex);
 }
 
 function update() {
