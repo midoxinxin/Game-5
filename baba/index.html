@@ -5,10 +5,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<script src="../lib/js/phaser-arcade-physics.min.js"></script>
 	<script src="app.js"></script>
-	<title></title>
+	<title>爸爸</title>
 </head>
 <body onclick="checkNow()" onkeypress="checkNow()" style="margin: 0">
+
+<div id="gameOver" style="display: none;">
+
+	<p id="gameOver_Score"></p>
+
+	<div>
+		分享到朋友圈
+	</div>
+
+	<button onclick="restartGame();document.getElementById('gameOver').style.display='none';">再来一次</button>
+
+</div>
+
 <div id="the">
 </div>
+
 </body>
 </html>

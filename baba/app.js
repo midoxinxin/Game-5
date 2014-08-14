@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * 游戏显示尺寸
  * @type {{Width: number, Height: number}}
@@ -111,9 +112,7 @@ var game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
 
 var main_state = {
 	preload: preload,
-	create: create,
-	update: update,
-	render: render
+	create: create
 };
 game.state.add('main', main_state);
 game.state.start('main');
@@ -177,6 +176,8 @@ function create() {
 	Boy.animations.add('req', [4, 5, 6, 7], 10, true);
 	Boy.animations.add('cry', [8, 9, 10, 11], 10);
 
+	buildReq();
+
 	//生成下面一排的按钮
 	for (var i = 0; i < LoopBtnCount; i++) {
 		var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i);
@@ -193,8 +194,6 @@ function create() {
 	//答案按钮的边框
 	AnswerBtnBorder = game.add.sprite(2 * LoopBtnDisplaySize - 2, DisPlay.Height - LoopBtnDisplaySize - 2, 'border');
 	AnswerBtnBorder.scale.set(ShouldScale);
-
-	buildReq();
 
 	updateReq();
 }
@@ -226,6 +225,7 @@ function buildReq() {
 		ReqBtnList[i] = one;
 	}
 }
+
 /**
  * 更新请求状态
  */
@@ -246,7 +246,6 @@ function updateReq(beginIndex) {
  * 检查第三个轮播按钮的值是否在所有的请求按钮里
  */
 function checkNow() {
-	console.log(LoopBtnList[2].frame);
 	for (var i = 0; i < ReqBtnList.length; i++) {
 		if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
 			score++;
@@ -255,13 +254,13 @@ function checkNow() {
 			return;
 		}
 	}
-	score = 0;
-	Boy.play('cry');
-	timer.add(DelayTime, function () {
-		restartGame();
-	});
+	gameOver();
 }
 
+/**
+ * 当猜对时显示飞翔动画
+ * @param desIndex
+ */
 function showMarchAnima(desIndex) {
 	MarchAnimaBtn.reset(AnswerBtn.x, AnswerBtn.y);
 	MarchAnimaBtn.frame = AnswerBtn.frame;
@@ -271,20 +270,39 @@ function showMarchAnima(desIndex) {
 	}, DelayTime, Phaser.Easing.Quadratic.InOut);
 	tween.onComplete.add(function () {
 		Boy.play('happy');
+		MarchAnimaBtn.exists = false;
 	}, this);
 	tween.start();
 	timer.add(DelayTime * 2, updateReq, this, desIndex);
 }
 
-function update() {
+/**
+ * 游戏结束
+ */
+function gameOver() {
+	timer.stop();
+	Boy.play('cry');
+	//把网页的标题设置为分数,便于分享到朋友圈
+	document.title = '我获得了' + score + '分';
+	var gameOver_Score = document.getElementById('gameOver_Score');
+	gameOver_Score.innerHTML = '你获得了' + score + '分';
+	document.getElementById('gameOver').style.display = 'block';
 }
 
-function render() {
-}
-
-function restartGame() {
+/**
+ * 重新开始游戏
+ */
+function restartGame(e) {
+	//如果提供了事件对象，则这是一个非IE浏览器
+	if (e && e.stopPropagation) {
+		e.stopPropagation();
+	} else {//否则，我们需要使用IE的方式来取消事件冒泡
+		window.event.cancelBubble = true;
+	}
 	score = 0;
 	ReqBtnCount = 2;
-	alert('游戏结束,分数为' + score + '重新开始');
 	game.state.start('main');
 }
+
+
+
