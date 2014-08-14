@@ -120,26 +120,34 @@ game.state.start('main');
 
 function preload() {
 	game.stage.backgroundColor = '#71c5cf';
+
 	//添加加载动画
-	var loadAnima = game.add.text(DisPlay.Width / 2, DisPlay.Height / 2, '0');
+	var loadAnima = game.add.text(DisPlay.Width / 2, DisPlay.Height / 2, '加载中');
 	game.load.onLoadStart.add(function () {
-		game.add.tween(loadAnima).to({
+		game.add.tween(loadAnima).delay(DelayTime).to({
 			x: DisPlay.Width * 0.25,
 			y: DisPlay.Height * 0.25
 		}).to({
 			x: DisPlay.Width * 0.75,
 			y: DisPlay.Height * 0.25
 		}).to({
+			x: DisPlay.Width * 0.5,
+			y: DisPlay.Height * 0.5
+		}).delay(DelayTime).to({
 			x: DisPlay.Width * 0.25,
 			y: DisPlay.Height * 0.75
 		}).to({
 			x: DisPlay.Width * 0.75,
 			y: DisPlay.Height * 0.75
-		}).loop().start();
+		}).to({
+			x: DisPlay.Width * 0.5,
+			y: DisPlay.Height * 0.5
+		}).delay(DelayTime).loop().start();
 	}, this);
 	game.load.onLoadComplete.add(function () {
 		loadAnima.destroy();
 	}, this);
+
 	//加载所需资源
 	game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
 	game.load.spritesheet('boy', 'assets/boy.png', BoySize.Width, BoySize.Height);
@@ -276,6 +284,7 @@ function render() {
 
 function restartGame() {
 	score = 0;
+	ReqBtnCount = 2;
 	alert('游戏结束,分数为' + score + '重新开始');
 	game.state.start('main');
 }
