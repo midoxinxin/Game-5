@@ -115,7 +115,6 @@ var main_state = {
 	create: create
 };
 game.state.add('main', main_state);
-game.state.start('main');
 
 function preload() {
 	game.stage.backgroundColor = '#71c5cf';
@@ -303,6 +302,15 @@ function restartGame(e) {
 	ReqBtnCount = 2;
 	game.state.start('main');
 }
+
+/**
+ * 开始游戏主场景
+ */
+function startGame() {
+	game.state.start('main');
+}
+
+startGame();
 
 
 
