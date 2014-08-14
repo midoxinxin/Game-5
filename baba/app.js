@@ -1,8 +1,9 @@
+"use strict";
 /**
  * 游戏显示尺寸
  * @type {{Width: number, Height: number}}
  */
-const DisPlay = {
+var DisPlay = {
 	Width: window.innerWidth,
 	Height: window.innerHeight
 };
@@ -11,7 +12,7 @@ const DisPlay = {
  * 中间那个小孩的尺寸
  * @type {{Width: number, Height: number}}
  */
-const BoySize = {
+var BoySize = {
 	Width: 120,
 	Height: 210
 };
@@ -20,19 +21,19 @@ const BoySize = {
  * 循环按钮是正方形,这是他的原图片的边长
  * @type {number}
  */
-const LoopBtnImgSize = 64;
+var LoopBtnImgSize = 64;
 
 /**
  * 一共为游戏提供了多少种按钮
  * @type {number}
  */
-const LoopBtnSumCount = 15;
+var LoopBtnSumCount = 15;
 
 /**
  * 下面会显示多少个循环按钮
  * @type {number}
  */
-const LoopBtnCount = 5;
+var LoopBtnCount = 5;
 
 /**
  * 同时显示几个请求按钮
@@ -44,19 +45,19 @@ var ReqBtnCount = 2;
  * 循环按钮是正方形,这是他的在屏幕上真正显示的边长
  * @type {number}
  */
-const LoopBtnDisplaySize = DisPlay.Width / LoopBtnCount;
+var LoopBtnDisplaySize = DisPlay.Width / LoopBtnCount;
 
 /**
  * 因为院图片和真正应该显示的边长不同,所以应该缩放
  * @type {number}
  */
-const ShouldScale = LoopBtnDisplaySize / LoopBtnImgSize;
+var ShouldScale = LoopBtnDisplaySize / LoopBtnImgSize;
 
 /**
  * 延时调用时间ms
  * @type {number}
  */
-const DelayTime = 500;
+var DelayTime = 500;
 
 /**
  * 计时器
@@ -118,10 +119,31 @@ game.state.add('main', main_state);
 game.state.start('main');
 
 function preload() {
+	game.stage.backgroundColor = '#71c5cf';
+	//添加加载动画
+	var loadAnima = game.add.text(DisPlay.Width / 2, DisPlay.Height / 2, '0');
+	game.load.onLoadStart.add(function () {
+		game.add.tween(loadAnima).to({
+			x: DisPlay.Width * 0.25,
+			y: DisPlay.Height * 0.25
+		}).to({
+			x: DisPlay.Width * 0.75,
+			y: DisPlay.Height * 0.25
+		}).to({
+			x: DisPlay.Width * 0.25,
+			y: DisPlay.Height * 0.75
+		}).to({
+			x: DisPlay.Width * 0.75,
+			y: DisPlay.Height * 0.75
+		}).loop().start();
+	}, this);
+	game.load.onLoadComplete.add(function () {
+		loadAnima.destroy();
+	}, this);
+	//加载所需资源
 	game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
 	game.load.spritesheet('boy', 'assets/boy.png', BoySize.Width, BoySize.Height);
 	game.load.image('border', 'assets/border.png');
-	game.stage.backgroundColor = '#71c5cf';
 }
 
 function create() {
