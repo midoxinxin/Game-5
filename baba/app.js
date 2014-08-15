@@ -108,8 +108,6 @@ var Boy;
  */
 var ShowLabel;
 
-
-
 var game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
 
 var main_state = {
@@ -259,8 +257,7 @@ function checkNow() {
     gameOver();
 }
 
-/**
- * 当猜对时显示飞翔动画
+/** * 当猜对时显示飞翔动画
  * @param desIndex
  */
 function showMarchAnima(desIndex) {

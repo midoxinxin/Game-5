@@ -5,58 +5,55 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<script src="../lib/js/phaser-arcade-physics.min.js"></script>
 	<script src="app.js"></script>
-    <link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="app.css">
 	<title>爸爸</title>
 </head>
 <body onload="gameStart()" onclick="checkNow()" onkeypress="checkNow()">
 
 <!--game start display-->
 <div id="GameStart" style="display: none;">
-    <div id="gamestartMain">
-        <div id="gamestartText">
-            <h2></h2>
-        </div>
+	<div id="gamestartMain">
+		<div id="gamestartText">
+			<h2></h2>
+		</div>
 
-        <div class="fancy" style="margin: 0 auto; padding: 0">
-        </div>
+		<div class="fancy" style="margin: 0 auto; padding: 0">
+		</div>
 
-        <div id="startgameButton">
-            <a href="javascript:void(0);" onclick="StartGame()" class="btn btn-block btn-lg redbuttonColor">开始游戏</a>
-        </div>
+		<div id="startgameButton">
+			<a href="javascript:void(0);" onclick="StartGame()" class="btn btn-block btn-lg redbuttonColor">开始游戏</a>
+		</div>
 
-    </div>
+	</div>
 </div>
 
 <!--game over display-->
 <div id="GameOver" style="display: none;">
-    <div id="gameoverMain">
-        <div id="gameoverText">
-            <h2>GameOver</h2>
-        </div>
+	<div id="gameoverMain">
+		<div id="gameoverText">
+			<h2>GameOver</h2>
+		</div>
 
 
-        <div id="yourScore">
-            <p>Your score is <strong id="theScore">60</strong></p>
-        </div>
+		<div id="yourScore">
+			<p>Your score is <strong id="theScore">60</strong></p>
+		</div>
 
-        <div id="button">
-            <div class="col5" id="replay">
-                <a href="javascript:void(0);" onclick="Replay()" class="btn btn-block btn-lg redbuttonColor">Replay</a>
-            </div>
-            <div class="col5" id="share">
-                <a href="javascript:void(0);" onclick="Share()" class="btn btn-block btn-lg bluebuttonColor">Share</a>
-            </div>
-        </div>
+		<div id="button">
+			<div class="col5" id="replay">
+				<a href="javascript:void(0);" onclick="Replay()" class="btn btn-block btn-lg redbuttonColor">Replay</a>
+			</div>
+			<div class="col5" id="share">
+				<a href="javascript:void(0);" onclick="Share()" class="btn btn-block btn-lg bluebuttonColor">Share</a>
+			</div>
+		</div>
 
 
-    </div>
+	</div>
 </div>
 
 
-<div id="the" style="display:block;"> </div>
-
-
-
+<div id="the" style="display:block;"></div>
 
 
 </body>
