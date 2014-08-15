@@ -390,3 +390,7 @@ function ScreenChange(index){
 }
 
 
+//touchstart事件
+function touchSatrtFunc(e) {
+    checkNow();
+}
