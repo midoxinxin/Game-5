@@ -206,7 +206,8 @@ function buildReq() {
  */
 function updateReq(beginIndex) {
 	Boy.play('req');
-	if (score != 0 && score % 3 == 0) {//分数每增加3分就增加一个请求按钮
+	//分数每增加3分就变化一下难度
+	if (score != 0 && score % 3 == 0) {
 		//如果有更多选项选修就变多
 		if (NowLoopChooseCount <= LoopBtnSumCount) {
 			NowLoopChooseCount++;
