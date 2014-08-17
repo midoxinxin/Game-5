@@ -207,11 +207,16 @@ function buildReq() {
 function updateReq(beginIndex) {
 	Boy.play('req');
 	if (score != 0 && score % 3 == 0) {//分数每增加3分就增加一个请求按钮
-		if (NowReqBtnCount <= LoopBtnSumCount && NowLoopChooseCount <= LoopBtnSumCount) {
-			NowReqBtnCount++;
+		//如果有更多选项选修就变多
+		if (NowLoopChooseCount <= LoopBtnSumCount) {
 			NowLoopChooseCount++;
-			DelayTime *= 0.95;
 		}
+		//如果请求按钮的数量的/2
+		if (NowReqBtnCount <= NowLoopChooseCount / 2) {
+			NowReqBtnCount++;
+		}
+		//下面越来越快
+		DelayTime *= 0.95;
 		buildReq();
 		return;
 	}
