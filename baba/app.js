@@ -128,7 +128,7 @@ var main_state = {
 game.state.add('main', main_state);
 
 function preload() {
-	game.stage.backgroundColor = '#71c5cf';
+	game.stage.backgroundColor = '#34495E';
 
 	//加载所需资源
 	game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
