@@ -147,7 +147,7 @@ function create() {
 	ShowLabel = game.add.text(10, 10, '0分');
 
 	//设置中间小孩的图像的位置和动画
-	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 3, 'boy', 0);
+	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 3, BoyName, 0);
 	Boy.anchor.set(0.5);
 	Boy.animations.add('happy', [0], 10);
 	Boy.animations.add('req', [1], 10, true);
