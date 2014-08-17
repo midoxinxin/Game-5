@@ -281,11 +281,10 @@ function startGame() {
  * 进入游戏结束
  */
 function gameOver() {
-	timer.stop();
 	Boy.play('cry');
 	//把网页的标题设置为分数,便于分享到朋友圈
 	document.title = '我获得了' + score + '分';
-	ScreenChange(2);
+	timer.add(DelayTime, ScreenChange, this, 2);
 }
 
 /**
@@ -302,7 +301,6 @@ function gameStart(){
  */
 function RoleOpen() {
 	ScreenChange(3);
-   // startGame();
 }
 
 /**
