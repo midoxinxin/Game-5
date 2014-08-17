@@ -304,13 +304,6 @@ function RoleOpen() {
 }
 
 /**
- * 游戏结束 “分享给朋友”按钮点击函数
- */
-function Share() {
-	alert("Hey,thank you for sharing the game!!!")
-}
-
-/**
  * 场景切换
  * @param index 场景的id
  * 当index=0:进入开屏
