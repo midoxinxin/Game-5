@@ -145,10 +145,11 @@ function create() {
 	game.physics.enable(MarchAnimaBtn);
 
 	//生成显示给用户的文字
-	ShowLabel = game.add.text(10, 10, '0分');
+	ShowLabel = game.add.text(DisPlay.Width / 2, 5, '0分', {font: "25px Arial", fill: "#fff", align: "center"});
+	ShowLabel.anchor.set(0.5, 0);
 
 	//设置中间小孩的图像的位置和动画
-	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 3, BoyName, 0);
+	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
 	Boy.anchor.set(0.5);
 	Boy.animations.add('happy', [0], 10);
 	Boy.animations.add('req', [1], 10, true);
@@ -160,7 +161,7 @@ function create() {
 	for (var i = 0; i < LoopBtnCount; i++) {
 		var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i % NowLoopChooseCount);
 		one.anchor.set(0.5);
-		one.scale.set(ShouldScale * 0.5);
+		one.scale.set(ShouldScale * 0.8);
 		one.alpha = 0.7;
 		LoopBtnList[i] = one;
 	}
