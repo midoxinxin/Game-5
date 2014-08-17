@@ -152,7 +152,7 @@ function create() {
 	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
 	Boy.anchor.set(0.5);
 	Boy.animations.add('happy', [0], 10);
-	Boy.animations.add('req', [1], 10, true);
+	Boy.animations.add('req', [1, 2], 10, true);
 	Boy.animations.add('cry', [2], 10);
 
 	buildReq();
