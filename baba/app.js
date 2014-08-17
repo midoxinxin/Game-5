@@ -69,7 +69,7 @@ var ShouldScale = LoopBtnDisplaySize / LoopBtnImgSize;
  * 延时调用时间ms
  * @type {number}
  */
-var DelayTime = 500;
+var DelayTime = 600;
 
 /**
  * 计时器
@@ -196,7 +196,7 @@ function buildReq() {
 		var degree = 2 * Math.PI * i / NowReqBtnCount;
 		var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i % NowLoopChooseCount);
 		one.anchor.set(0.5);
-		one.scale.set(ShouldScale);
+		one.scale.set(ShouldScale * 0.8);
 		ReqBtnList[i] = one;
 	}
 }
@@ -210,6 +210,7 @@ function updateReq(beginIndex) {
 		if (NowReqBtnCount <= LoopBtnSumCount && NowLoopChooseCount <= LoopBtnSumCount) {
 			NowReqBtnCount++;
 			NowLoopChooseCount++;
+			DelayTime *= 0.95;
 		}
 		buildReq();
 		return;
