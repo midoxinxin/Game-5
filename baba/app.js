@@ -51,7 +51,7 @@ var NowReqBtnCount = 2;
  * 此时下面请求选修的个数
  * @type {number}
  */
-var NowLoopChooseCount = 6;
+var NowLoopChooseCount = 5;
 
 /**
  * 循环按钮是正方形,这是他的在屏幕上真正显示的边长
@@ -151,9 +151,9 @@ function create() {
 	//设置中间小孩的图像的位置和动画
 	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
 	Boy.anchor.set(0.5);
-	Boy.animations.add('happy', [0], 2);
-	Boy.animations.add('req', [1, 2], 2, true);
-	Boy.animations.add('cry', [2], 2);
+	Boy.animations.add('happy', [0], 10);
+	Boy.animations.add('req', [1, 2], 10, true);
+	Boy.animations.add('cry', [2], 10);
 
 	buildReq();
 
