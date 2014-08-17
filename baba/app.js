@@ -147,7 +147,7 @@ function create() {
 	ShowLabel = game.add.text(10, 10, '0分');
 
 	//设置中间小孩的图像的位置和动画
-	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 3, 'boy', 0);
+	Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 3, BoyName, 0);
 	Boy.anchor.set(0.5);
 	Boy.animations.add('happy', [0], 10);
 	Boy.animations.add('req', [1], 10, true);
@@ -222,13 +222,7 @@ function updateReq(beginIndex) {
 /**
  * 检查第三个轮播按钮的值是否在所有的请求按钮里
  */
-function checkNow(e) {
-	//如果提供了事件对象，则这是一个非IE浏览器
-	if (e && e.stopPropagation) {
-		e.stopPropagation();
-	} else {//否则，我们需要使用IE的方式来取消事件冒泡
-		window.event.cancelBubble = true;
-	}
+function checkNow() {
 	for (var i = 0; i < ReqBtnList.length; i++) {
 		if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
 			score++;
@@ -298,8 +292,8 @@ function gameOver() {
  * 游戏开屏
  * */
 
-function gameStart(){
-    ScreenChange(0);
+function gameStart() {
+	ScreenChange(0);
 }
 
 
@@ -308,7 +302,7 @@ function gameStart(){
  */
 function RoleOpen() {
 	ScreenChange(3);
-   // startGame();
+	// startGame();
 }
 
 /**
@@ -388,5 +382,5 @@ function ScreenChange(index) {
  */
 function roleChoose(name) {
 	BoyName = name;
-    startGame();
+	startGame();
 }
