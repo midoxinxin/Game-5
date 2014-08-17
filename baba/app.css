@@ -326,9 +326,9 @@ h2{
 
 }
 
-#duoduo,#Feynman,#yangyangyang,#Grace,#Joe,#beier{
+#duoduo,#feynman,#yangyangyang,#grace,#joe,#beier{
     position:relative;
-    background: url("assets/children.png") no-repeat;
+    background-position: 0 0;
     width: 120px;
     height: 210px;
     overflow: hidden;
@@ -336,51 +336,53 @@ h2{
 
 #duoduo{
     position: absolute;
-    background-position: 0 -210px;
-    left: 23%;
+    background: url("assets/duoduo.png");
+    left: 1%;
 
 }
 
 #yangyangyang{
     position: absolute;
-    background-position: 0 0;
-    left: 43%;
+    background: url("assets/yangyangyang.png");
+    left: 21%;
+    top:10%;
 
 }
 
-#Feynman{
+#feynman{
+    background: url("assets/feynman.png");
     position: absolute;
-    background-position: 0 -840px;
-    left: 13%;
+    left: 21%;
 
 }
 
-#Joe{
+#joe{
+    background: url("assets/joe.png");
     position: absolute;
-    background-position: 0 -630px;
+    left:41%;
 
-    left:5%;
+}
+
+
+
+#grace{
+    background: url("assets/grace.png");
+    position: absolute;
+    left: 1%;
+    top:10%;
     -webkit-animation:JumpAnimation 2s ease infinite 1s alternate-reverse;
-}
-
-
-
-#Grace{
-    position: absolute;
-    background-position: 0 -1050px;
-    left: 25%;
 
 }
 #beier{
-    background-position: 0 -420px;
-    top: 10%;
-    left: 60%;
+    background: url("assets/beier.png");
+    left: 41%;
+    top:10%;
 
 }
 
 @-webkit-keyframes JumpAnimation{
     0%,
-    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-120px inherit;}
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-120px -1050px;}
     40%  {  transform: scaleX(1.1)  scaleY(.9);}
     55%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
     65%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
