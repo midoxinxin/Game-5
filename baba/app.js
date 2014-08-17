@@ -289,10 +289,20 @@ function gameOver() {
 }
 
 /**
+ * 游戏开屏
+ * */
+
+function gameStart(){
+    ScreenChange(0);
+}
+
+
+/**
  * 进入角色选择
  */
 function RoleOpen() {
 	ScreenChange(3);
+   // startGame();
 }
 
 /**
@@ -372,5 +382,5 @@ function ScreenChange(index) {
  */
 function roleChoose(name) {
 	BoyName = name;
-	startGame();
+    startGame();
 }
