@@ -284,15 +284,15 @@ function gameOver() {
 	Boy.play('cry');
 	//把网页的标题设置为分数,便于分享到朋友圈
 	document.title = '我获得了' + score + '分';
-	timer.add(DelayTime, ScreenChange, this, 2);
+	timer.add(DelayTime * 2, ScreenChange, this, 2);
 }
 
 /**
  * 游戏开屏
  * */
 
-function gameStart(){
-    ScreenChange(0);
+function gameStart() {
+	ScreenChange(0);
 }
 
 
@@ -380,5 +380,5 @@ function ScreenChange(index) {
  */
 function roleChoose(name) {
 	BoyName = name;
-    startGame();
+	startGame();
 }
