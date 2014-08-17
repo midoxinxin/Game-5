@@ -9,7 +9,7 @@
 	<title>爸爸</title>
 </head>
 
-<body onload="RoleOpen()" onclick="checkNow()" ontouchstart="checkNow()" onkeypress="checkNow()" >
+<body onload="RoleOpen()" onclick="checkNow()" ontouchstart="checkNow()" onkeypress="checkNow()">
 
 <!--game start display-->
 <div id="GameStart" style="display: none;">
@@ -22,7 +22,7 @@
 		</div>
 
 		<div id="startgameButton">
-			<a href="javascript:void(0);" onclick="StartGame()" class="btn btn-block btn-lg redbuttonColor">开始游戏</a>
+			<a href="javascript:void(0);" onclick="startGame()" class="btn btn-block btn-lg redbuttonColor">开始游戏</a>
 		</div>
 
 	</div>
@@ -32,13 +32,24 @@
 <!--role choose display-->
 <div id="Role" style="display: none;">
 
-    <div id="duoduo" onclick="rolechoose('duoduo')"></div>
-    <div id="feynman" onclick="rolechoose('feynman')"></div>
-    <div id="joe" onclick="rolechoose('joe')"></div>
-    <div id="grace" onclick="rolechoose('grace')"></div>
-    <div id="yangyangyang" onclick="rolechoose('yangyangynag')"></div>
-    <div id="beier" onclick="rolechoose('beier')"></div>
-
+	<a href="javascript:void(0)" onclick="roleChoose('duoduo')">
+		<div id="duoduo"></div>
+	</a>
+	<a href="javascript:void(0)" onclick="roleChoose('feynman')">
+		<div id="Feynman"></div>
+	</a>
+	<a href="javascript:void(0)" onclick="roleChoose('beier')">
+		<div id="beier"></div>
+	</a>
+	<a href="javascript:void(0)" onclick="roleChoose('grace')">
+		<div id="Grace"></div>
+	</a>
+	<a href="javascript:void(0)" onclick="roleChoose('joe')">
+		<div id="Joe"></div>
+	</a>
+	<a href="javascript:void(0)" onclick="roleChoose('yangyangyang')">
+		<div id="yangyangyang"></div>
+	</a>
 
 </div>
 
@@ -57,7 +68,8 @@
 
 		<div id="button">
 			<div class="col5" id="replay">
-				<a href="javascript:void(0);" onclick="Replay()" class="btn btn-block btn-lg redbuttonColor">Replay</a>
+				<a href="javascript:void(0);" onclick="restartGame()"
+				   class="btn btn-block btn-lg redbuttonColor">Replay</a>
 			</div>
 			<div class="col5" id="share">
 				<a href="javascript:void(0);" onclick="Share()" class="btn btn-block btn-lg bluebuttonColor">Share</a>
