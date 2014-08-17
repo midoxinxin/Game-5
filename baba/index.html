@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="app.css">
 	<title>爸爸</title>
 </head>
-<body onload="gameStart()" onclick="checkNow()" ontouchstart="checkNow()" onkeypress="checkNow()" >
+<body onload="RoleOpen()" onclick="checkNow()" ontouchstart="checkNow()" onkeypress="checkNow()" >
 
 <!--game start display-->
 <div id="GameStart" style="display: none;">
@@ -26,6 +26,21 @@
 
     </div>
 </div>
+
+
+<!--role choose display-->
+<div id="Role" style="display: none;">
+
+    <a  href="javascript:void(0)" onclick="rolechoose('duoduo')"><div id="duoduo"></div></a>
+        <a  href="javascript:void(0)" onclick="rolechoose('feynman')"><div id="Feynman"></div></a>
+            <a  href="javascript:void(0)" onclick="rolechoose('beier')"><div id="beier"></div></a>
+                <a  href="javascript:void(0)" onclick="rolechoose('grace')"><div id="Grace"></div></a>
+                    <a  href="javascript:void(0)" onclick="rolechoose('joe')"><div id="Joe"></div></a>
+                        <a  href="javascript:void(0)" onclick="rolechoose('yangyangyang')"><div id="yangyangyang"></div></a>
+
+
+</div>
+
 
 <!--game over display-->
 <div id="GameOver" style="display: none;">

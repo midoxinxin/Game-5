@@ -149,7 +149,7 @@ function preload() {
 
     //加载所需资源
     game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
-    game.load.spritesheet('boy', 'assets/boy.png', BoySize.Width, BoySize.Height);
+    game.load.spritesheet('boy', 'assets/children.png', BoySize.Width, BoySize.Height);
     game.load.image('border', 'assets/border.png');
 }
 
@@ -323,6 +323,15 @@ function gameOver() {
     ScreenChange(2);
 }
 
+
+
+/**
+ * 角色选择
+ */
+function RoleOpen(){
+    ScreenChange(3);
+}
+
 /**
  * 开屏界面 “开始游戏”按钮点击函数
  */
@@ -356,41 +365,57 @@ function ScreenChange(index){
     var gamestartMain = document.getElementById("gamestartMain");
     var gameoverObj = document.getElementById("GameOver");
     var gameoverMain = document.getElementById("gameoverMain");
+    var roleObj = document.getElementById("Role");
+
 
     if(index == 0){
         //场景0 开屏
         the.style.display = "none";
         gameoverObj.style.display = "none";
+        roleObj.style.display = "none";
         gamestartObj.style.display = "block";
         gamestartMain.style.width = DisPlay.Width+"px";
         gamestartMain.style.height = DisPlay.Height+"px";
 
-        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display);
+        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display+"   角色界面："+roleObj.style.display);
 
     }
     else if(index == 1){
         //场景1 游戏界面
         gamestartObj.style.display = "none";
         gameoverObj.style.display = "none";
+        roleObj.style.display = "none";
         the.style.display = "block";
-        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display);
+        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display+"   角色界面："+roleObj.style.display);
     }
     else if(index==2){
         //场景2 结束界面
         the.style.display = "none";
         gamestartObj.style.display = "none";
+        roleObj.style.display = "none";
         gameoverObj.style.display = "block";
         gameoverMain.style.width = DisPlay.Width+"px";
         gameoverMain.style.height = DisPlay.Height+"px";
         var thescore = document.getElementById("theScore");
         thescore.innerHTML = score;
-        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display);
+        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display+"   角色界面："+roleObj.style.display);
+
+    }
+
+    else if(index==3){
+        //场景3 角色选择
+        roleObj.style.display = "block";
+        the.style.display = "none";
+        gamestartObj.style.display = "none";
+        gameoverObj.style.display = "none";
+        roleObj.style.width = DisPlay.Width+"px";
+        roleObj.style.height = DisPlay.Height+"px";
+        console.log("开屏场景："+ gamestartObj.style.display+"  游戏界面："+the.style.display+"  结束界面："+gameoverObj.style.display+"   角色界面："+roleObj.style.display);
 
     }
 }
 
-
-//touchstart事件
-function touchSatrtFunc(e) {
-    checkNow();
+function rolechoose(name){
+    var child = name;
+    alert("i have chosen "+child);
 }

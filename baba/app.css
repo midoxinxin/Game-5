@@ -305,3 +305,83 @@ h2{
     box-sizing:inherit;
 }
 
+
+#Role{
+    position: absolute;
+    min-width: 320px;
+    min-height: 568px;
+    display: none;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    background: url("assets/grace.jpg") no-repeat center center;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+
+}
+
+#duoduo,#Feynman,#yangyangyang,#Grace,#Joe,#beier{
+    position:relative;
+    background: url("assets/children.png") no-repeat;
+    width: 120px;
+    height: 210px;
+    overflow: hidden;
+}
+
+#duoduo{
+    position: absolute;
+    background-position: 0 -210px;
+    left: 23%;
+
+}
+
+#yangyangyang{
+    position: absolute;
+    background-position: 0 0;
+    left: 43%;
+
+}
+
+#Feynman{
+    position: absolute;
+    background-position: 0 -840px;
+    left: 13%;
+
+}
+
+#Joe{
+    position: absolute;
+    background-position: 0 -630px;
+
+    left:5%;
+    -webkit-animation:JumpAnimation 2s ease infinite 1s alternate-reverse;
+}
+
+
+
+#Grace{
+    position: absolute;
+    background-position: 0 -1050px;
+    left: 25%;
+
+}
+#beier{
+    background-position: 0 -420px;
+    top: 10%;
+    left: 60%;
+
+}
+
+@-webkit-keyframes JumpAnimation{
+    0%,
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-120px inherit;}
+    40%  {  transform: scaleX(1.1)  scaleY(.9);}
+    55%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
+    65%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
+}
