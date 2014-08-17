@@ -94,11 +94,6 @@ var LoopBtnList = [];
 var AnswerBtn;
 
 /**
- * 最下面那排按钮的中间那个答案按钮的外面的边框
- */
-var AnswerBtnBorder;
-
-/**
  * 存放请求的按钮组
  * @type {Array}
  */
@@ -173,10 +168,6 @@ function create() {
 	AnswerBtn = LoopBtnList[2];
 	AnswerBtn.alpha = 1;
 	AnswerBtn.scale.set(ShouldScale);
-
-	//答案按钮的边框
-	AnswerBtnBorder = game.add.sprite(2 * LoopBtnDisplaySize - 2, DisPlay.Height - LoopBtnDisplaySize - 2, 'border');
-	AnswerBtnBorder.scale.set(ShouldScale);
 
 	updateReq();
 }
