@@ -318,7 +318,7 @@ h2{
     top: 0;
     left: 0;
     z-index: 101;
-    background: #fff;
+    background: #34495E;
     /*background: url("assets/grace.jpg") no-repeat center center;*/
     /*background-size:cover;*/
     /*-webkit-background-size:cover;*/
@@ -339,16 +339,22 @@ h2{
     position: absolute;
     background: url("assets/duoduo.png");
     left: 5%;
-    top:10%;
+    top:1%;
     -webkit-animation:JumpAnimation 4s ease infinite 3s alternate-reverse;
+    -moz-animation:JumpAnimation 4s ease infinite 3s alternate-reverse;
+    -o-animation:JumpAnimation 4s ease infinite 3s alternate-reverse;
+    animation:JumpAnimation 4s ease infinite 3s alternate-reverse;
 }
 
 #grace{
     background: url("assets/grace.png");
     position: absolute;
     left: 5%;
-    top:50%;
+    top:35%;
     -webkit-animation:JumpAnimation 4s ease infinite 6s alternate-reverse;
+    -moz-animation:JumpAnimation 4s ease infinite 6s alternate-reverse;
+    -o-animation:JumpAnimation 4s ease infinite 6s alternate-reverse;
+    animation:JumpAnimation 4s ease infinite 6s alternate-reverse;
 
 }
 
@@ -357,24 +363,36 @@ h2{
     position: absolute;
     background: url("assets/yangyangyang.png");
     left: 35%;
-    top:50%;
+    top:35%;
     -webkit-animation:JumpAnimation 4s ease infinite 5s alternate-reverse;
+    -moz-animation:JumpAnimation 4s ease infinite 5s alternate-reverse;
+    -o-animation:JumpAnimation 4s ease infinite 5s alternate-reverse;
+    animation:JumpAnimation 4s ease infinite 5s alternate-reverse;
+
 }
 
 #feynman{
     background: url("assets/feynman.png");
     position: absolute;
     left: 35%;
-    top:10%;
+    top:1%;
     -webkit-animation:JumpAnimation 4s ease infinite 7s alternate-reverse;
+    -moz-animation:JumpAnimation 4s ease infinite 7s alternate-reverse;
+    -o-animation:JumpAnimation 4s ease infinite 7s alternate-reverse;
+    animation:JumpAnimation 4s ease infinite 7s alternate-reverse;
+
 }
 
 #joe{
     background: url("assets/joe.png");
     position: absolute;
     left:65%;
-    top:10%;
+    top:1%;
     -webkit-animation:JumpAnimation 4s ease infinite 4s alternate-reverse;
+    -moz-animation:JumpAnimation 4s ease infinite 4s alternate-reverse;
+    -o-animation:JumpAnimation 4s ease infinite 4s alternate-reverse;
+    animation:JumpAnimation 4s ease infinite 4s alternate-reverse;
+
 }
 
 
@@ -383,12 +401,42 @@ h2{
 #beier{
     background: url("assets/beier.png");
     left: 65%;
-    top:50%;
+    top:35%;
     -webkit-animation:JumpAnimation 4s ease infinite 1s alternate-reverse;
+    -moz-animation:JumpAnimation 4s ease infinite 1s alternate-reverse;
+    -o-animation:JumpAnimation 4s ease infinite 1s alternate-reverse;
+    animation:JumpAnimation 4s ease infinite 1s alternate-reverse;
 
 }
 
 @-webkit-keyframes JumpAnimation{
+    0%,75%,
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ;background-position:-119px 0;}
+    80%  {  transform: scaleX(1.1)  scaleY(.9);}
+    87.5%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
+    95%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-119px 0;}
+}
+
+@-o-keyframes JumpAnimation{
+    0%,75%,
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ;background-position:-119px 0;}
+    80%  {  transform: scaleX(1.1)  scaleY(.9);}
+    87.5%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
+    95%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-119px 0;}
+}
+
+@-moz-keyframes JumpAnimation{
+    0%,75%,
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ;background-position:-119px 0;}
+    80%  {  transform: scaleX(1.1)  scaleY(.9);}
+    87.5%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
+    95%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-119px 0;}
+}
+
+@keyframes JumpAnimation{
     0%,75%,
     100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ;background-position:-119px 0;}
     80%  {  transform: scaleX(1.1)  scaleY(.9);}
