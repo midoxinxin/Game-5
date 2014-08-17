@@ -42,10 +42,16 @@ var LoopBtnSumCount = 15;
 var LoopBtnCount = 5;
 
 /**
- * 同时显示几个请求按钮
+ * 此时同时显示几个请求按钮
  * @type {number}
  */
-var ReqBtnCount = 2;
+var NowReqBtnCount = 2;
+
+/**
+ * 此时下面请求选修的个数
+ * @type {number}
+ */
+var NowLoopChooseCount = 5;
 
 /**
  * 循环按钮是正方形,这是他的在屏幕上真正显示的边长
@@ -157,7 +163,7 @@ function create() {
 
 	//生成下面一排的按钮
 	for (var i = 0; i < LoopBtnCount; i++) {
-		var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i);
+		var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i % NowLoopChooseCount);
 		one.anchor.set(0.5);
 		one.scale.set(ShouldScale * 0.5);
 		one.alpha = 0.7;
@@ -182,7 +188,7 @@ function goNext() {
 	for (var i = 0; i < LoopBtnCount - 1; i++) {
 		LoopBtnList[i].frame = LoopBtnList[i + 1].frame;
 	}
-	LoopBtnList[LoopBtnList.length - 1].frame = Math.floor(Math.random() * LoopBtnSumCount);
+	LoopBtnList[LoopBtnList.length - 1].frame = Math.floor(Math.random() * NowLoopChooseCount);
 }
 
 /**
@@ -193,10 +199,10 @@ function buildReq() {
 	for (var i = 0; i < ReqBtnList.length; i++) {
 		ReqBtnList[i].destroy();
 	}
-	for (var i = 0; i < ReqBtnCount; i++) {
+	for (var i = 0; i < NowReqBtnCount; i++) {
 		var distance = Boy.width;
-		var degree = 2 * Math.PI * i / ReqBtnCount;
-		var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i);
+		var degree = 2 * Math.PI * i / NowReqBtnCount;
+		var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i % NowLoopChooseCount);
 		one.anchor.set(0.5);
 		one.scale.set(ShouldScale);
 		ReqBtnList[i] = one;
@@ -209,14 +215,17 @@ function buildReq() {
 function updateReq(beginIndex) {
 	Boy.play('req');
 	if (score != 0 && score % 3 == 0) {//分数每增加3分就增加一个请求按钮
-		ReqBtnCount++;
+		if (NowReqBtnCount <= LoopBtnSumCount && NowLoopChooseCount <= LoopBtnSumCount) {
+			NowReqBtnCount++;
+			NowLoopChooseCount++;
+		}
 		buildReq();
 		return;
 	}
 	for (var i = beginIndex; i < ReqBtnList.length - 1; i++) {
 		ReqBtnList[i].frame = ReqBtnList[i + 1].frame;
 	}
-	ReqBtnList[ReqBtnList.length - 1].frame = Math.floor(Math.random() * LoopBtnSumCount);
+	ReqBtnList[ReqBtnList.length - 1].frame = Math.floor(Math.random() * NowLoopChooseCount);
 }
 
 /**
@@ -227,7 +236,7 @@ function checkNow() {
 		if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
 			score++;
 			ShowLabel.text = score + '分';
-			showMarchAnima(i);
+			showMarchAnima(i);//这里面有updateReq
 			return;
 		}
 	}
@@ -263,7 +272,7 @@ function restartGame(e) {
 		window.event.cancelBubble = true;
 	}
 	score = 0;
-	ReqBtnCount = 2;
+	NowReqBtnCount = 2;
 
 	ScreenChange(1);
 	game.state.start('main');
