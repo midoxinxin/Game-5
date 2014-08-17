@@ -318,11 +318,12 @@ h2{
     top: 0;
     left: 0;
     z-index: 101;
-    background: url("assets/grace.jpg") no-repeat center center;
-    background-size:cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
+    background: #fff;
+    /*background: url("assets/grace.jpg") no-repeat center center;*/
+    /*background-size:cover;*/
+    /*-webkit-background-size:cover;*/
+    /*-moz-background-size:cover;*/
+    /*-o-background-size:cover;*/
 
 }
 
@@ -338,7 +339,7 @@ h2{
     position: absolute;
     background: url("assets/duoduo.png");
     left: 1%;
-
+    -webkit-animation:JumpAnimation 4s ease infinite 3s alternate-reverse;
 }
 
 #yangyangyang{
@@ -346,21 +347,21 @@ h2{
     background: url("assets/yangyangyang.png");
     left: 21%;
     top:10%;
-
+    -webkit-animation:JumpAnimation 4s ease infinite 5s alternate-reverse;
 }
 
 #feynman{
     background: url("assets/feynman.png");
     position: absolute;
     left: 21%;
-
+    -webkit-animation:JumpAnimation 4s ease infinite 7s alternate-reverse;
 }
 
 #joe{
     background: url("assets/joe.png");
     position: absolute;
     left:41%;
-
+    -webkit-animation:JumpAnimation 4s ease infinite 4s alternate-reverse;
 }
 
 
@@ -370,20 +371,22 @@ h2{
     position: absolute;
     left: 1%;
     top:10%;
-    -webkit-animation:JumpAnimation 2s ease infinite 1s alternate-reverse;
+    -webkit-animation:JumpAnimation 4s ease infinite 6s alternate-reverse;
 
 }
 #beier{
     background: url("assets/beier.png");
     left: 41%;
     top:10%;
+    -webkit-animation:JumpAnimation 4s ease infinite 1s alternate-reverse;
 
 }
 
 @-webkit-keyframes JumpAnimation{
-    0%,
-    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-120px -1050px;}
-    40%  {  transform: scaleX(1.1)  scaleY(.9);}
-    55%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
-    65%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
+    0%,75%,
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ;background-position:-119px 0;}
+    80%  {  transform: scaleX(1.1)  scaleY(.9);}
+    87.5%  {  transform: scaleX(1.2) scaleY(1); animation-timing-function: ease-in-out; }
+    95%  {  transform: scaleX(.8)  scaleY(1.1); animation-timing-function: ease-out ;}
+    100% {      transform: scaleX(1) scaleY(1); animation-timing-function: ease-in ; background-position:-119px 0;}
 }
