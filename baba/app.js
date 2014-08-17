@@ -27,7 +27,7 @@ var BoyName;
  * 循环按钮是正方形,这是他的原图片的边长
  * @type {number}
  */
-var LoopBtnImgSize = 112.3;
+var LoopBtnImgSize = 140;
 
 /**
  * 一共为游戏提供了多少种按钮
@@ -123,7 +123,7 @@ var main_state = {
 game.state.add('main', main_state);
 
 function preload() {
-	game.stage.backgroundColor = '#34495E';
+	game.stage.backgroundColor = '#39373C';
 
 	//加载所需资源
 	game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
