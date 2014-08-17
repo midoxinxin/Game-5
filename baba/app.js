@@ -302,7 +302,6 @@ function gameStart(){
  */
 function RoleOpen() {
 	ScreenChange(3);
-   // startGame();
 }
 
 /**
