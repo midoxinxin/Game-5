@@ -27,13 +27,13 @@ var BoyName;
  * 循环按钮是正方形,这是他的原图片的边长
  * @type {number}
  */
-var LoopBtnImgSize = 64;
+var LoopBtnImgSize = 112.3;
 
 /**
  * 一共为游戏提供了多少种按钮
  * @type {number}
  */
-var LoopBtnSumCount = 15;
+var LoopBtnSumCount = 9;
 
 /**
  * 下面会显示多少个循环按钮
