@@ -4,15 +4,32 @@
 "use strict";
 
 /**
- * 一行按钮模版
- * @type {*|jQuery|HTMLElement}
- */
-var oneBtnRow = $('<div class="button-bar"></div>');
-
-/**
  * 一行中的一个按钮模版
  */
-var oneBtnTemp = $('<div class="button" data-color style="border: 1px solid green"></div>');
+var oneBtnTemp = $('<div class="one" data-color></div>');
+
+/**
+ * 目前按钮矩阵的大小的边长
+ * @type {number}
+ */
+var nowSize = 2;
+
+/**
+ * 目前剩余的时间，秒
+ */
+var nowReTime = 120;
+
+/**
+ * 显示分数的html
+ * @type {*|jQuery|HTMLElement}
+ */
+var nowScoreCon = $('#scoreCon');
+
+/**
+ * 显示剩余时间的html
+ * @type {*|jQuery|HTMLElement}
+ */
+var nowTimeCon = $('#timeCon');
 
 /**
  * 存放所有按钮的容器
@@ -20,33 +37,26 @@ var oneBtnTemp = $('<div class="button" data-color style="border: 1px solid gree
 var main = $('#mainCon');
 
 /**
- * 储存正方形矩阵里没有小块的RGB值
- * @type {Array} 二维数组
- */
-var colorMatrix = [];
-
-/**
- * 目前按钮矩阵的大小的边长
- * @type {number}
- */
-var nowSize = 3;
-
-/**
  * 颜色仓库
  */
 var colorLib = [
-	{color: 'write', count: 0},
-	{color: 'black', count: 0}
+	{color: 'yellow', count: 0},
+	{color: 'green', count: 0}
 ];
 
 /**
- * 构造一个按钮
- * @param height 按钮的高度
+ * 构造一个正方形按钮
+ * @param size 按钮的高度
  * @param backgroundColor 按钮的颜色
+ * @param left x
+ * @param top y
  */
-function makeOneBtn(height, backgroundColor) {
+function makeOneBtn(size, left, top, backgroundColor) {
 	var newBtn = $(oneBtnTemp).clone();
-	$(newBtn).css('height', height);
+	$(newBtn).css('height', size-2);
+	$(newBtn).css('width', size-2);
+	$(newBtn).css('left', left);
+	$(newBtn).css('top', top);
 	$(newBtn).css('backgroundColor', backgroundColor);
 	$(newBtn).data('color', backgroundColor);
 	$(newBtn).click(function () {
@@ -71,6 +81,7 @@ function checkNow(btn) {
 	for (var i = 0; i < colorLib.length; i++) {
 		if (colorLib[i].color == color) {
 			count = colorLib[i].count;
+			break;
 		}
 	}
 	for (var i = 0; i < colorLib.length; i++) {
@@ -82,27 +93,9 @@ function checkNow(btn) {
 }
 
 /**
- * 构造一行按钮,每个按钮的都是正方形
- * @param rowWidth 这一行的宽度
- * @param rowHeight 这一行的高度
- * @param rowIndex 这一排时正方形矩阵的第几排(0开始)
+ * 从colorLib里面随机产生一个颜色值，并且对应的颜色值加一
  */
-function makeBtnRow(rowWidth, rowHeight, rowIndex) {
-	var newBtnRow = $(oneBtnRow).clone();
-	var btnCount = rowWidth / rowHeight;
-	colorMatrix[rowIndex] = [];
-	for (var i = 0; i < btnCount; i++) {
-		var oneColor = randomRGB();
-		colorMatrix[rowIndex][i] = oneColor;
-		$(newBtnRow).append(makeOneBtn(rowHeight, oneColor));
-	}
-	return newBtnRow;
-}
-
-/**
- * 从colorLib里面随机产生一个RGB值，并且对应的颜色值加一
- */
-function randomRGB() {
+function randomColor() {
 	var index = Math.floor(Math.random() * colorLib.length);
 	colorLib[index].count++;
 	return colorLib[index].color;
@@ -110,21 +103,49 @@ function randomRGB() {
 
 /**
  * 重新设置中间的正方形矩阵
- * @param size 这个矩阵一行包含多少个小正方形
+ * @param count 这个矩阵一行包含多少个小正方形
  */
-function randomMain(size) {
+function randomMain(count) {
+	//更新显示分数
+	$(nowScoreCon).html(nowSize - 3);
+
 	//计数清0
 	for (var i = 0; i < colorLib.length; i++) {
 		colorLib[i].count = 0;
 	}
 
 	$(main).html('');
-	var width = $(main).width();
-	var rowHeight = width / size;
-	for (var i = 0; i < size; i++) {
-		$(main).append(makeBtnRow(width, rowHeight, i));
+	var conSize = $(main).width();
+	var oneSize = conSize / count;
+	for (var i = 0; i < count; i++) {
+		for (var j = 0; j < count; j++) {
+			var oneBtn = makeOneBtn(oneSize, j * oneSize, i * oneSize, randomColor());
+			$(main).append(oneBtn);
+		}
 	}
 }
 
-randomMain(nowSize);
+/**
+ * 倒计时
+ */
+function timer() {
+	nowReTime--;
+	//更新到html
+	$(nowTimeCon).html(nowReTime);
 
+	if (nowReTime <= 0) {
+		alert('no');
+		return;
+	}
+	setTimeout(timer, 1000);
+}
+
+/**
+ * 开始游戏
+ */
+function startGame() {
+	randomMain(nowSize);
+	timer();
+}
+
+startGame();

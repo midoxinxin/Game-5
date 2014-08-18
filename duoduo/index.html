@@ -2,12 +2,31 @@
 <html>
 <head lang="en">
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="lib/css/ionic.min.css">
 	<script src="lib/js/jquery.min.js"></script>
+	<style>
+		.one {
+			float: left;
+			margin: 1px;
+		}
+
+		.oneDisplay {
+			margin: 5px;
+			float: left;
+		}
+	</style>
 </head>
-<body>
-<div id="mainCon" class="card">
+<body style="margin: 0">
+
+
+<div style="float: left;width: 100%">
+	<div id="scoreCon" class="oneDisplay"></div>
+	<div id="timeCon" class="oneDisplay" style="float: right"></div>
 </div>
+
+<div id="mainCon" style="margin: 5px">
+</div>
+
+
 <script src="app.js"></script>
 </body>
 </html>
