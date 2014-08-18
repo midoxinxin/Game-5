@@ -12,7 +12,7 @@ var oneBtnRow = $('<div class="button-bar"></div>');
 /**
  * 一行中的一个按钮模版
  */
-var oneBtnTemp = $('<div class="button" data-color style="border: none"></div>');
+var oneBtnTemp = $('<div class="button" data-color style="border: 1px solid green"></div>');
 
 /**
  * 存放所有按钮的容器
@@ -26,6 +26,20 @@ var main = $('#mainCon');
 var colorMatrix = [];
 
 /**
+ * 目前按钮矩阵的大小的边长
+ * @type {number}
+ */
+var nowSize = 3;
+
+/**
+ * 颜色仓库
+ */
+var colorLib = [
+	{color: 'write', count: 0},
+	{color: 'black', count: 0}
+];
+
+/**
  * 构造一个按钮
  * @param height 按钮的高度
  * @param backgroundColor 按钮的颜色
@@ -36,9 +50,35 @@ function makeOneBtn(height, backgroundColor) {
 	$(newBtn).css('backgroundColor', backgroundColor);
 	$(newBtn).data('color', backgroundColor);
 	$(newBtn).click(function () {
-		alert($(this).data('color'));
+		if (checkNow(this)) {
+			randomMain(++nowSize);
+		} else {
+			alert('no');
+			randomMain(--nowSize);
+		}
 	});
 	return newBtn;
+}
+
+/**
+ * 检验选择的按钮是否是颜色最多的按钮
+ * @param btn
+ * @returns {boolean}
+ */
+function checkNow(btn) {
+	var color = $(btn).data('color');
+	var count = 0;
+	for (var i = 0; i < colorLib.length; i++) {
+		if (colorLib[i].color == color) {
+			count = colorLib[i].count;
+		}
+	}
+	for (var i = 0; i < colorLib.length; i++) {
+		if (count < colorLib[i].count) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /**
@@ -60,14 +100,12 @@ function makeBtnRow(rowWidth, rowHeight, rowIndex) {
 }
 
 /**
- * 随机产生一个RGB值
+ * 从colorLib里面随机产生一个RGB值，并且对应的颜色值加一
  */
 function randomRGB() {
-	function c() {
-		return Math.floor(Math.random() * 256).toString(16)
-	}
-
-	return "#" + c() + c() + c();
+	var index = Math.floor(Math.random() * colorLib.length);
+	colorLib[index].count++;
+	return colorLib[index].color;
 }
 
 /**
@@ -75,13 +113,18 @@ function randomRGB() {
  * @param size 这个矩阵一行包含多少个小正方形
  */
 function randomMain(size) {
+	//计数清0
+	for (var i = 0; i < colorLib.length; i++) {
+		colorLib[i].count = 0;
+	}
+
 	$(main).html('');
 	var width = $(main).width();
 	var rowHeight = width / size;
 	for (var i = 0; i < size; i++) {
-		$(main).append(makeBtnRow(width, rowHeight,i));
+		$(main).append(makeBtnRow(width, rowHeight, i));
 	}
 }
 
-randomMain(5);
+randomMain(nowSize);
 
