@@ -9,10 +9,16 @@
 var oneBtnTemp = $('<div class="one" data-color></div>');
 
 /**
+ * 初始化时
+ * @type {number}
+ */
+var initSize = 2;
+
+/**
  * 目前按钮矩阵的大小的边长
  * @type {number}
  */
-var nowSize = 2;
+var nowSize = initSize;
 
 /**
  * 目前剩余的时间，秒
@@ -45,18 +51,33 @@ var colorLib = [
 ];
 
 /**
+ * 存储矩阵里所有的正方形
+ * @type {Array}
+ */
+var btnList = [];
+
+/**
+ * 初始化btnList
+ */
+function initBtnList() {
+	var conSize = $(main).width();
+	var oneSize = conSize / initSize;
+	for (var i = 0; i < initSize * initSize; i++) {
+		var oneBtn = makeOneBtn(oneSize, randomColor());
+		btnList.push(oneBtn);
+		$(main).append(oneBtn);
+	}
+}
+
+/**
  * 构造一个正方形按钮
  * @param size 按钮的高度
  * @param backgroundColor 按钮的颜色
- * @param left x
- * @param top y
  */
-function makeOneBtn(size, left, top, backgroundColor) {
+function makeOneBtn(size, backgroundColor) {
 	var newBtn = $(oneBtnTemp).clone();
-	$(newBtn).css('height', size-2);
-	$(newBtn).css('width', size-2);
-	$(newBtn).css('left', left);
-	$(newBtn).css('top', top);
+	$(newBtn).css('height', size - 2);
+	$(newBtn).css('width', size - 2);
 	$(newBtn).css('backgroundColor', backgroundColor);
 	$(newBtn).data('color', backgroundColor);
 	$(newBtn).click(function () {
@@ -64,7 +85,7 @@ function makeOneBtn(size, left, top, backgroundColor) {
 			randomMain(++nowSize);
 		} else {
 			alert('no');
-			randomMain(--nowSize);
+			randomMain(nowSize);
 		}
 	});
 	return newBtn;
@@ -107,22 +128,40 @@ function randomColor() {
  */
 function randomMain(count) {
 	//更新显示分数
-	$(nowScoreCon).html(nowSize - 3);
+	$(nowScoreCon).html(nowSize - 2);
 
 	//计数清0
 	for (var i = 0; i < colorLib.length; i++) {
 		colorLib[i].count = 0;
 	}
-
-	$(main).html('');
 	var conSize = $(main).width();
 	var oneSize = conSize / count;
-	for (var i = 0; i < count; i++) {
-		for (var j = 0; j < count; j++) {
-			var oneBtn = makeOneBtn(oneSize, j * oneSize, i * oneSize, randomColor());
+
+	var btnSumCount = count * count;
+	var shouldAddCount = btnSumCount - btnList.length;
+
+	//重新设置以前现有按钮的大小
+	$(btnList).each(function () {
+		$(this).css('height', oneSize - 2);
+		$(this).css('width', oneSize - 2);
+	});
+
+	//如果现有的不够就增加
+	if (shouldAddCount > 0) {
+		for (var i = 0; i < shouldAddCount; i++) {
+			var oneBtn = makeOneBtn(oneSize, randomColor());
+			btnList.push(oneBtn);
 			$(main).append(oneBtn);
 		}
 	}
+
+	//对所有的按钮重新设置颜色
+	$(btnList).each(function () {
+		var backgroundColor = randomColor();
+		$(this).css('backgroundColor', backgroundColor);
+		$(this).data('color', backgroundColor);
+	});
+
 }
 
 /**
@@ -144,7 +183,7 @@ function timer() {
  * 开始游戏
  */
 function startGame() {
-	randomMain(nowSize);
+	initBtnList();
 	timer();
 }
 
