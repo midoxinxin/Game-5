@@ -23,7 +23,7 @@ a:link {
 	border-radius: 5px;
 	min-width: 50px;
 	text-align: center;
-	border: 2px solid #000000;
+	border: 4px solid;
 }
 
 .oneDisplay span {
@@ -64,17 +64,19 @@ a:link {
 }
 
 #gameOver {
+	color: #23d10f;
 	margin: 6px;
 	padding: 8px;
-	border: 4px solid #000000;
+	border: 4px solid #23d10f;
 	border-radius: 5px;
 	background-color: #ffffff;
 }
 
 #beforeGame {
+	color: #23d10f;
 	margin: 6px;
 	padding: 8px;
-	border: 4px solid #000000;
+	border: 4px solid #23d10f;
 	border-radius: 5px;
 	background-color: #ffffff;
 }
