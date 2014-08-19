@@ -7,16 +7,21 @@
 </head>
 <body>
 
+<!--游戏结束时显示-->
+<div id="gameOver" style="display: none">
+	<h2 class="say"></h2>
+	<em style="font-size: 12px;color: gray">分享到朋友圈,让你的朋友们来试试</em>
+</div>
 
 <div style="float: left;width: 100%">
-	<div class="oneDisplay grade" style="border-color: green"><em id="scoreCon"></em><span>关</span></div>
-	<div class="oneDisplay timer" style="float: right;border-color: indianred"><em id="timeCon"></em><span>秒</span>
+	<div class="oneDisplay" style="border-color: #23d10f"><em id="scoreCon"></em><span>关</span></div>
+	<div id="timer" class="oneDisplay error" style="float: right;border-color: #ff525c"><em
+			id="timeCon"></em><span>秒</span>
 	</div>
 </div>
 
 <div id="mainCon" style="margin: 5px">
 </div>
-
 
 <script src="app.js"></script>
 </body>

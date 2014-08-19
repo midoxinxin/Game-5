@@ -9,7 +9,7 @@
 var oneBtnTemp = $('<div class="one" data-color></div>');
 
 /**
- * 初始化时
+ * 初始化时矩阵的大小
  * @type {number}
  */
 var initSize = 2;
@@ -23,7 +23,7 @@ var nowSize = initSize;
 /**
  * 目前剩余的时间，秒
  */
-var nowReTime = 120;
+var nowReTime = 20;
 
 /**
  * 显示分数的html
@@ -46,9 +46,9 @@ var main = $('#mainCon');
  * 颜色仓库
  */
 var colorLib = [
-	{color: 'yellow', count: 0},
-	{color: 'green', count: 0},
-	{color: 'blue', count: 0}
+	{color: '#23d10f', count: 0},
+	{color: '#ff525c', count: 0}
+	//{color: 'blue', count: 0}
 ];
 
 /**
@@ -56,6 +56,11 @@ var colorLib = [
  * @type {Array}
  */
 var btnList = [];
+
+/**
+ * 游戏是否已经结束
+ */
+var isGameOver = false;
 
 /**
  * 构造一个正方形按钮
@@ -69,11 +74,15 @@ function makeOneBtn(size, backgroundColor) {
 	$(newBtn).css('backgroundColor', backgroundColor);
 	$(newBtn).data('color', backgroundColor);
 	$(newBtn).click(function () {
-		if (checkNow(this)) {
+		//如果游戏已经结束就不处理
+		if (isGameOver) {
+			return;
+		}
+		if (checkNow(this)) {//正确
 			randomMain(++nowSize);
-		} else {
-			alert('no');
-			randomMain(nowSize);
+		} else {//错误
+			$(main).hide().fadeIn();
+			randomMain(--nowSize);
 		}
 	});
 	return newBtn;
@@ -115,6 +124,7 @@ function randomColor() {
  * @param count 这个矩阵一行包含多少个小正方形
  */
 function randomMain(count) {
+
 	//更新显示分数
 	$(nowScoreCon).html(nowSize - 2);
 
@@ -128,20 +138,26 @@ function randomMain(count) {
 	var btnSumCount = count * count;
 	var shouldAddCount = btnSumCount - btnList.length;
 
-	//重新设置以前现有按钮的大小
-	$(btnList).each(function () {
-		$(this).css('height', oneSize - 2);
-		$(this).css('width', oneSize - 2);
-	});
-
 	//如果现有的不够就增加
-	if (shouldAddCount > 0) {
+	if (shouldAddCount >= 0) {
 		for (var i = 0; i < shouldAddCount; i++) {
 			var oneBtn = makeOneBtn(oneSize, randomColor());
 			btnList.push(oneBtn);
 			$(main).append(oneBtn);
 		}
+	} else {//还有多的就删除掉
+		shouldAddCount = -shouldAddCount;
+		for (var i = 0; i < shouldAddCount; i++) {
+			var one = btnList.pop();
+			$(one).remove();
+		}
 	}
+
+	//重新所有按钮的大小
+	$(btnList).each(function () {
+		$(this).css('height', oneSize - 2);
+		$(this).css('width', oneSize - 2);
+	});
 
 	//对所有的按钮重新设置颜色
 	$(btnList).each(function () {
@@ -160,11 +176,26 @@ function timer() {
 	//更新到html
 	$(nowTimeCon).html(nowReTime);
 
+	//时间到,游戏结束
 	if (nowReTime <= 0) {
-		alert('no');
+		gameOver();
 		return;
 	}
 	setTimeout(timer, 1000);
+}
+
+/**
+ * 游戏结束时调用
+ */
+function gameOver() {
+	isGameOver = true;
+	$('#timer').removeClass('error');
+	var score = nowSize - 2;
+	var say = '你的直觉闯过了' + score + '关';
+	document.title = say;
+	var gameOver = $('#gameOver');
+	$(gameOver).find('.say').first().text(say);
+	$(gameOver).fadeIn();
 }
 
 /**
