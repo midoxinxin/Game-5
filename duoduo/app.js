@@ -195,15 +195,26 @@ function gameOver() {
 	document.title = say;
 	var gameOver = $('#gameOver');
 	$(gameOver).find('.say').first().text(say);
-	$(gameOver).fadeIn();
+	$(gameOver).slideDown();
 }
 
 /**
  * 开始游戏
  */
 function startGame() {
+	$('#beforeGame').slideUp();
+	$('#timer').addClass('error');
 	randomMain(initSize);
 	timer();
 }
 
-startGame();
+
+////////////////微信接口/////////////////
+var dataForWeixin = {
+	appId: "",
+	MsgImg: "http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png",
+	TLImg: "http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png",
+	url: "http://gwuhaolin.github.io/Game-5/duoduo/index.html",
+	title: "怒放纹身社移动版",
+	desc: "欢迎大家点击"
+};
