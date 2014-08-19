@@ -33,13 +33,11 @@ var nowReTime = initReTime;
 
 /**
  * 显示分数的html
- * @type {*|jQuery|HTMLElement}
  */
 var nowScoreCon = $('#scoreCon');
 
 /**
  * 显示剩余时间的html
- * @type {*|jQuery|HTMLElement}
  */
 var nowTimeCon = $('#timeCon');
 
@@ -133,10 +131,6 @@ function randomMain(count) {
 	//更新显示分数
 	$(nowScoreCon).html(nowSize - 2);
 
-	//计数清0
-	for (var i = 0; i < colorLib.length; i++) {
-		colorLib[i].count = 0;
-	}
 	var conSize = $(main).width();
 	var oneSize = conSize / count;
 
@@ -164,6 +158,10 @@ function randomMain(count) {
 		$(this).css('width', oneSize - 2);
 	});
 
+	//计数清0
+	for (var i = 0; i < colorLib.length; i++) {
+		colorLib[i].count = 0;
+	}
 	//对所有的按钮重新设置颜色
 	$(btnList).each(function () {
 		var backgroundColor = randomColor();
@@ -270,5 +268,3 @@ document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 		shareWeibo();
 	});
 }, false);
-
-///////////////////统计代码///////////////////
