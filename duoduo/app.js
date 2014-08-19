@@ -197,7 +197,7 @@ function gameOver() {
 	$('#timer').removeClass('error');
 	var score = nowSize - 2;
 	var say = '你凭直觉闯过了' + score + '关';
-	shareTitle = '试试你的直觉有多准! 我凭直觉闯过了' + score + '关,你们也来试试';
+	shareTitle = '我凭直觉闯过了' + score + '关! 来试试你的直觉有多准.';
 	var gameOver = $('#gameOver');
 	$(gameOver).find('.say').first().text(say);
 	$(gameOver).slideDown();
@@ -270,3 +270,5 @@ document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 		shareWeibo();
 	});
 }, false);
+
+///////////////////统计代码///////////////////
