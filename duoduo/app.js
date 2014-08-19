@@ -21,9 +21,15 @@ var initSize = 2;
 var nowSize = initSize;
 
 /**
+ * 初始化时目前剩余的时间，秒
+ * @type {number}
+ */
+var initReTime = 60;
+
+/**
  * 目前剩余的时间，秒
  */
-var nowReTime = 20;
+var nowReTime = initReTime;
 
 /**
  * 显示分数的html
@@ -48,7 +54,6 @@ var main = $('#mainCon');
 var colorLib = [
 	{color: '#23d10f', count: 0},
 	{color: '#ff525c', count: 0}
-	//{color: 'blue', count: 0}
 ];
 
 /**
@@ -191,8 +196,8 @@ function gameOver() {
 	isGameOver = true;
 	$('#timer').removeClass('error');
 	var score = nowSize - 2;
-	var say = '你的直觉闯过了' + score + '关';
-	shareTitle = '我的直觉闯过了' + score + '关,你们也来试试';
+	var say = '你凭直觉闯过了' + score + '关';
+	shareTitle = '试试你的直觉有多准! 我凭直觉闯过了' + score + '关,你们也来试试';
 	var gameOver = $('#gameOver');
 	$(gameOver).find('.say').first().text(say);
 	$(gameOver).slideDown();
@@ -202,7 +207,11 @@ function gameOver() {
  * 开始游戏
  */
 function startGame() {
+	isGameOver = false;
+	nowReTime = initReTime;
+	nowSize = initSize;
 	$('#beforeGame').slideUp();
+	$('#gameOver').slideUp();
 	$('#timer').addClass('error');
 	randomMain(initSize);
 	timer();
@@ -212,8 +221,8 @@ function startGame() {
 ////////////////微信接口/////////////////
 var imgUrl = 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png';
 var lineLink = 'http://gwuhaolin.github.io/Game-5/duoduo/index.html';
-var descContent = "找出颜色最大的方块,看看你的直觉有多准?";
-var shareTitle = 'xx';
+var descContent = "找出颜色最大的方块,试试你的直觉有多准";
+var shareTitle = '找出颜色最大的方块,试试你的直觉有多准?';
 var appid = 'wx5c6c73bc34fc424e';
 
 function shareFriend() {
