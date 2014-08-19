@@ -192,7 +192,7 @@ function gameOver() {
 	$('#timer').removeClass('error');
 	var score = nowSize - 2;
 	var say = '你的直觉闯过了' + score + '关';
-	document.title = say;
+	document.title = '我的直觉闯过了' + score + '关,你们也来试试';
 	var gameOver = $('#gameOver');
 	$(gameOver).find('.say').first().text(say);
 	$(gameOver).slideDown();
@@ -210,11 +210,57 @@ function startGame() {
 
 
 ////////////////微信接口/////////////////
-var dataForWeixin = {
-	appId: "",
-	MsgImg: "http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png",
-	TLImg: "http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png",
-	url: "http://gwuhaolin.github.io/Game-5/duoduo/index.html",
-	title: "怒放纹身社移动版",
-	desc: "欢迎大家点击"
-};
+var imgUrl = 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png';
+var lineLink = 'http://gwuhaolin.github.io/Game-5/duoduo/index.html';
+var descContent = "descContent";
+var shareTitle = 'shareTitle';
+var appid = '';
+
+function shareFriend() {
+	WeixinJSBridge.invoke('sendAppMessage', {
+		"appid": appid,
+		"img_url": imgUrl,
+		"img_width": "200",
+		"img_height": "200",
+		"link": lineLink,
+		"desc": descContent,
+		"title": shareTitle
+	}, function (res) {
+		//_report('send_msg', res.err_msg);
+	})
+}
+function shareTimeline() {
+	WeixinJSBridge.invoke('shareTimeline', {
+		"img_url": imgUrl,
+		"img_width": "200",
+		"img_height": "200",
+		"link": lineLink,
+		"desc": descContent,
+		"title": shareTitle
+	}, function (res) {
+		//_report('timeline', res.err_msg);
+	});
+}
+function shareWeibo() {
+	WeixinJSBridge.invoke('shareWeibo', {
+		"content": descContent,
+		"url": lineLink
+	}, function (res) {
+		//_report('weibo', res.err_msg);
+	});
+}
+// 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	// 发送给好友
+	WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		shareFriend();
+	});
+	// 分享到朋友圈
+	WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		shareTimeline();
+	});
+	// 分享到微博
+	WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		shareWeibo();
+	});
+}, false);
