@@ -47,7 +47,8 @@ var main = $('#mainCon');
  */
 var colorLib = [
 	{color: 'yellow', count: 0},
-	{color: 'green', count: 0}
+	{color: 'green', count: 0},
+	{color: 'blue', count: 0}
 ];
 
 /**
@@ -55,19 +56,6 @@ var colorLib = [
  * @type {Array}
  */
 var btnList = [];
-
-/**
- * 初始化btnList
- */
-function initBtnList() {
-	var conSize = $(main).width();
-	var oneSize = conSize / initSize;
-	for (var i = 0; i < initSize * initSize; i++) {
-		var oneBtn = makeOneBtn(oneSize, randomColor());
-		btnList.push(oneBtn);
-		$(main).append(oneBtn);
-	}
-}
 
 /**
  * 构造一个正方形按钮
@@ -183,7 +171,7 @@ function timer() {
  * 开始游戏
  */
 function startGame() {
-	initBtnList();
+	randomMain(initSize);
 	timer();
 }
 

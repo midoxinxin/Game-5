@@ -2,26 +2,16 @@
 <html>
 <head lang="en">
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="app.css">
 	<script src="lib/js/jquery.min.js"></script>
-	<style>
-		.one {
-			float: left;
-			margin: 1px;
-			display: none;
-		}
-
-		.oneDisplay {
-			margin: 5px;
-			float: left;
-		}
-	</style>
 </head>
-<body style="margin: 0">
+<body>
 
 
 <div style="float: left;width: 100%">
-	<div id="scoreCon" class="oneDisplay"></div>
-	<div id="timeCon" class="oneDisplay" style="float: right"></div>
+	<div class="oneDisplay grade" style="border-color: green"><em id="scoreCon"></em><span>关</span></div>
+	<div class="oneDisplay timer" style="float: right;border-color: indianred"><em id="timeCon"></em><span>秒</span>
+	</div>
 </div>
 
 <div id="mainCon" style="margin: 5px">
