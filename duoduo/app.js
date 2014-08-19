@@ -197,7 +197,7 @@ function gameOver() {
 	$('#timer').removeClass('error');
 	var score = nowSize - 2;
 	var say = '你凭直觉闯过了' + score + '关';
-	shareTitle = '我凭直觉闯过了' + score + '关! 来试试你的直觉有多准.';
+	shareTitle = '我凭直觉闯过了' + score + '关! 来挑战下你直觉.';
 	var gameOver = $('#gameOver');
 	$(gameOver).find('.say').first().text(say);
 	$(gameOver).slideDown();
@@ -221,8 +221,8 @@ function startGame() {
 ////////////////微信接口/////////////////
 var imgUrl = 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png';
 var lineLink = 'http://gwuhaolin.github.io/Game-5/duoduo/index.html';
-var descContent = "找出颜色最大的方块,试试你的直觉有多准";
-var shareTitle = '找出颜色最大的方块,试试你的直觉有多准?';
+var descContent = "挑战下你直觉,找出颜色最大的方块";
+var shareTitle = '挑战下你直觉,找出颜色最大的方块';
 var appid = 'wx5c6c73bc34fc424e';
 
 function shareFriend() {
