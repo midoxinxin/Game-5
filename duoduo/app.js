@@ -192,7 +192,7 @@ function gameOver() {
 	$('#timer').removeClass('error');
 	var score = nowSize - 2;
 	var say = '你的直觉闯过了' + score + '关';
-	document.title = '我的直觉闯过了' + score + '关,你们也来试试';
+	weixinData.title = '我的直觉闯过了' + score + '关,你们也来试试';
 	var gameOver = $('#gameOver');
 	$(gameOver).find('.say').first().text(say);
 	$(gameOver).slideDown();
@@ -210,44 +210,21 @@ function startGame() {
 
 
 ////////////////微信接口/////////////////
-var imgUrl = 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png';
-var lineLink = 'http://gwuhaolin.github.io/Game-5/duoduo/index.html';
-var descContent = "descContent";
-var shareTitle = 'shareTitle';
-var appid = '';
-
+var weixinData = {
+	"appid": 'wx5c6c73bc34fc424e',
+	"img_url": 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png',
+	"link": 'http://gwuhaolin.github.io/Game-5/duoduo/index.html',
+	"desc": "找出颜色最大的方块,看看你的直觉有多准?",
+	"title": ""
+};
 function shareFriend() {
-	WeixinJSBridge.invoke('sendAppMessage', {
-		"appid": appid,
-		"img_url": imgUrl,
-		"img_width": "200",
-		"img_height": "200",
-		"link": lineLink,
-		"desc": descContent,
-		"title": shareTitle
-	}, function (res) {
-		//_report('send_msg', res.err_msg);
-	})
+	WeixinJSBridge.invoke('sendAppMessage', weixinData);
 }
 function shareTimeline() {
-	WeixinJSBridge.invoke('shareTimeline', {
-		"img_url": imgUrl,
-		"img_width": "200",
-		"img_height": "200",
-		"link": lineLink,
-		"desc": descContent,
-		"title": shareTitle
-	}, function (res) {
-		//_report('timeline', res.err_msg);
-	});
+	WeixinJSBridge.invoke('sendAppMessage', weixinData);
 }
 function shareWeibo() {
-	WeixinJSBridge.invoke('shareWeibo', {
-		"content": descContent,
-		"url": lineLink
-	}, function (res) {
-		//_report('weibo', res.err_msg);
-	});
+	WeixinJSBridge.invoke('sendAppMessage', weixinData);
 }
 // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
 document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
