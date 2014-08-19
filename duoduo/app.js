@@ -210,15 +210,15 @@ function startGame() {
 
 
 ////////////////微信接口/////////////////
-var weixinData = {
-	"appid": 'wx5c6c73bc34fc424e',
-	"img_url": 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png',
-	"img_width": "200",
-	"img_height": "200",
-	"link": 'http://gwuhaolin.github.io/Game-5/duoduo/index.html',
-	"desc": "找出颜色最大的方块,看看你的直觉有多准?",
-	"title": ""
-};
+//var weixinData = {
+//	"appid": 'wx5c6c73bc34fc424e',
+//	"img_url": 'http://gwuhaolin.github.io/Game-5/duoduo/duoduo.png',
+//	"img_width": "200",
+//	"img_height": "200",
+//	"link": 'http://gwuhaolin.github.io/Game-5/duoduo/index.html',
+//	"desc": "找出颜色最大的方块,看看你的直觉有多准?",
+//	"title": ""
+//};
 function shareFriend() {
 	WeixinJSBridge.invoke('sendAppMessage', weixinData, function (res) {
 	});
@@ -248,42 +248,42 @@ document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 }, false);
 
 ///////////////////////////////////
-//var imgUrl = 'http://xxx/share_ico.png';
-//var lineLink = 'http://xxx';
-//var descContent = "xx！";
-//var shareTitle = 'xx';
-//var appid = '';
-//
-//function shareFriend() {
-//	WeixinJSBridge.invoke('sendAppMessage', {
-//		"appid": appid,
-//		"img_url": imgUrl,
-//		"img_width": "200",
-//		"img_height": "200",
-//		"link": lineLink,
-//		"desc": descContent,
-//		"title": shareTitle
-//	}, function (res) {
-//		//_report('send_msg', res.err_msg);
-//	})
-//}
-//function shareTimeline() {
-//	WeixinJSBridge.invoke('shareTimeline', {
-//		"img_url": imgUrl,
-//		"img_width": "200",
-//		"img_height": "200",
-//		"link": lineLink,
-//		"desc": descContent,
-//		"title": shareTitle
-//	}, function (res) {
-//		//_report('timeline', res.err_msg);
-//	});
-//}
-//function shareWeibo() {
-//	WeixinJSBridge.invoke('shareWeibo', {
-//		"content": descContent,
-//		"url": lineLink
-//	}, function (res) {
-//		//_report('weibo', res.err_msg);
-//	});
-//}
+var imgUrl = 'http://xxx/share_ico.png';
+var lineLink = 'http://xxx';
+var descContent = "xx！";
+var shareTitle = 'xx';
+var appid = '';
+
+function shareFriend() {
+	WeixinJSBridge.invoke('sendAppMessage', {
+		"appid": appid,
+		"img_url": imgUrl,
+		"img_width": "200",
+		"img_height": "200",
+		"link": lineLink,
+		"desc": descContent,
+		"title": shareTitle
+	}, function (res) {
+		//_report('send_msg', res.err_msg);
+	})
+}
+function shareTimeline() {
+	WeixinJSBridge.invoke('shareTimeline', {
+		"img_url": imgUrl,
+		"img_width": "200",
+		"img_height": "200",
+		"link": lineLink,
+		"desc": descContent,
+		"title": shareTitle
+	}, function (res) {
+		//_report('timeline', res.err_msg);
+	});
+}
+function shareWeibo() {
+	WeixinJSBridge.invoke('shareWeibo', {
+		"content": descContent,
+		"url": lineLink
+	}, function (res) {
+		//_report('weibo', res.err_msg);
+	});
+}
