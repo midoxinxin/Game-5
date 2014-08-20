@@ -84,8 +84,9 @@ function makeOneBtn(size, backgroundColor) {
 		if (checkNow(this)) {//正确
 			randomMain(++nowSize);
 		} else {//错误
-			$(main).hide().fadeIn();
+			$(main).hide();
 			randomMain(--nowSize);
+			$(main).fadeIn();
 		}
 	});
 	return newBtn;
