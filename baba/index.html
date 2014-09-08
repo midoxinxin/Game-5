@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<script src="lib/js/phaser-arcade-physics.min.js"></script>
-	<script src="app.js"></script>
-	<link rel="stylesheet" href="app.css">
-	<title>爸爸</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="app.css">
+  <title>爸爸</title>
 </head>
 
 <body onload="gameStart()" ontouchstart="checkNow()" onkeypress="checkNow()">
 
 <!--game start display-->
 <div id="GameStart" style="display: none;">
-	<div id="gamestartMain">
-		<div id="gamestartText">
-			<h2></h2>
-		</div>
+  <div id="gamestartMain">
+    <div id="gamestartText">
+      <h2></h2>
+    </div>
 
-		<div class="fancy" style="margin: 0 auto; padding: 0">
-		</div>
+    <div class="fancy" style="margin: 0 auto; padding: 0">
+    </div>
 
-		<div id="startgameButton">
-			<a href="javascript:void(0);" onclick="RoleOpen()" class="btn btn-block btn-lg redbuttonColor">开始游戏</a>
-		</div>
+    <div id="startgameButton">
+      <a href="javascript:void(0);" onclick="RoleOpen()" class="btn btn-block btn-lg redbuttonColor">开始游戏</a>
+    </div>
 
-	</div>
+  </div>
 </div>
 
 
 <!--role choose display-->
 <div id="Role" style="display: none;">
-	<div id="duoduo" onclick="roleChoose('duoduo')"></div>
-	<div id="feynman" onclick="roleChoose('feynman')"></div>
-	<div id="joe" onclick="roleChoose('joe')"></div>
-	<div id="grace" onclick="roleChoose('grace')"></div>
-	<div id="yangyangyang" onclick="roleChoose('yangyangyang')"></div>
-	<div id="beier" onclick="roleChoose('beier')"></div>
+  <div id="duoduo" onclick="roleChoose('duoduo')"></div>
+  <div id="feynman" onclick="roleChoose('feynman')"></div>
+  <div id="joe" onclick="roleChoose('joe')"></div>
+  <div id="grace" onclick="roleChoose('grace')"></div>
+  <div id="yangyangyang" onclick="roleChoose('yangyangyang')"></div>
+  <div id="beier" onclick="roleChoose('beier')"></div>
 </div>
 
 
 <!--game over display-->
 <div id="GameOver" style="display: none;">
-	<div id="gameoverMain">
-		<div id="gameoverText">
-			<h2>GameOver</h2>
-		</div>
+  <div id="gameoverMain">
+    <div id="gameoverText">
+      <h2>GameOver</h2>
+    </div>
 
-		<div id="yourScore">
-			<p>Your score is <strong id="theScore">60</strong></p>
-		</div>
+    <div id="yourScore">
+      <p>Your score is <strong id="theScore">60</strong></p>
+    </div>
 
-		<div id="button">
-			<a id="replay" href="javascript:void(0);" onclick="restartGame()"
-			   class="btn btn-block btn-lg bluebuttonColor">再来一次</a>
-		</div>
+    <div id="button">
+      <a id="replay" href="javascript:void(0);" onclick="restartGame()"
+         class="btn btn-block btn-lg bluebuttonColor">再来一次</a>
+    </div>
 
 
-	</div>
+  </div>
 </div>
 
 
 <div id="the" style="display:block;"></div>
 
+<script src="lib/js/phaser-arcade-physics.min.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
