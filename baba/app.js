@@ -123,15 +123,20 @@ var main_state = {
 game.state.add('main', main_state);
 
 function preload() {
-	game.stage.backgroundColor = '#39373C';
+
 
 	//加载所需资源
 	game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
 	game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
 	game.load.image('border', 'assets/border.png');
+    game.load.image('gameback', 'assets/gameback.png');
+
 }
 
 function create() {
+
+    game.add.sprite(0, 0, 'gameback');
+
 	//生成计时器
 	timer = game.time.create(false);
 	timer.loop(DelayTime, goNext, this);
@@ -161,8 +166,8 @@ function create() {
 	for (var i = 0; i < LoopBtnCount; i++) {
 		var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i % NowLoopChooseCount);
 		one.anchor.set(0.5);
-		one.scale.set(ShouldScale * 0.8);
-		one.alpha = 0.7;
+		one.scale.set(ShouldScale * 0.6);
+		one.alpha = 0.5;
 		LoopBtnList[i] = one;
 	}
 	//答案按钮
