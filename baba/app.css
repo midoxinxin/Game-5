@@ -240,6 +240,7 @@ h2{
 
 #startgameButton p{
     font-size: 12px;
+    padding: 20px 10px;
 }
 
 @-webkit-keyframes startGameButton{
