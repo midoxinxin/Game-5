@@ -402,7 +402,7 @@ function makeApiUrl(path) {
    * 主机基本URL
    * @type {string}
    */
-  var HostURL = "/api/";
+  var HostURL = "http://42.96.157.54:8888/api/";
 
   /**
    * 使用jsonp方法跨域获得JSON的回调函数
