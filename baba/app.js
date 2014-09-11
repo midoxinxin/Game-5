@@ -294,6 +294,7 @@ function startGame() {
  * 进入游戏结束
  */
 function gameOver() {
+  commitInfo();
   Boy.play('cry');
   //把网页的标题设置为分数,便于分享到朋友圈
   document.title = '我获得了' + score + '分';
@@ -388,7 +389,7 @@ function ScreenChange(index) {
 function roleChoose(name, id) {
   BoyName = name;
   startGame();
-  commitInfo(id);
+  ChooseID = id;
 }
 
 /////////////////信息收集////////////////////
@@ -414,18 +415,19 @@ function makeApiUrl(path) {
 }
 
 var GameID = 1;
+var ChooseID;
 /**
  * 添加商品apiURL
  */
 var url_AddItem = makeApiUrl('add');
 /**
  * 向服务器发送一条收集到的信息
- * @param chooseId 做出的选择
  */
-function commitInfo(chooseId) {
+function commitInfo() {
   var one = {
     gameId: GameID,
-    chooseId: chooseId
+    chooseId: ChooseID,
+    score: score
   };
   $.getJSON(url_AddItem, one).done(function (data) {
     console.log(data);
