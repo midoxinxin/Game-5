@@ -54,6 +54,7 @@ var NowReqBtnCount = 2;
 var NowLoopChooseCount = 5;
 
 /**
+ *
  * 循环按钮是正方形,这是他的在屏幕上真正显示的边长
  * @type {number}
  */
