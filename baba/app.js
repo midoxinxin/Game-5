@@ -129,7 +129,6 @@ function preload() {
   //加载所需资源
   game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
   game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
-  game.load.image('border', 'assets/border.png');
   game.load.image('gameback', 'assets/gameback.png');
 
 }
@@ -245,7 +244,9 @@ function checkNow() {
       return;
     }
   }
+
   gameOver();
+
 }
 
 /** * 当猜对时显示飞翔动画
@@ -308,6 +309,7 @@ function gameOver() {
 
 function gameStart() {
   ScreenChange(0);
+
 }
 
 
@@ -327,6 +329,7 @@ function RoleOpen() {
  */
 function ScreenChange(index) {
 
+  var hula = document.getElementById("isWhonowDiv");
   var the = document.getElementById("the");
   var gamestartObj = document.getElementById("GameStart");
   var gamestartMain = document.getElementById("gamestartMain");
@@ -337,6 +340,7 @@ function ScreenChange(index) {
 
   if (index == 0) {
     //场景0 开屏
+    
     the.style.display = "none";
     gameoverObj.style.display = "none";
     roleObj.style.display = "none";
@@ -349,6 +353,7 @@ function ScreenChange(index) {
   }
   else if (index == 1) {
     //场景1 游戏界面
+      hula.style.display = "none";
     gamestartObj.style.display = "none";
     gameoverObj.style.display = "none";
     roleObj.style.display = "none";
@@ -357,6 +362,7 @@ function ScreenChange(index) {
   }
   else if (index == 2) {
     //场景2 结束界面
+      hula.style.display = "block";
     the.style.display = "none";
     gamestartObj.style.display = "none";
     roleObj.style.display = "none";
@@ -371,6 +377,7 @@ function ScreenChange(index) {
 
   else if (index == 3) {
     //场景3 角色选择
+      hula.style.display = "none";
     roleObj.style.display = "block";
     the.style.display = "none";
     gamestartObj.style.display = "none";
