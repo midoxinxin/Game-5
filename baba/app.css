@@ -125,10 +125,8 @@ h2{
     position: absolute;
     color: #34495E;
     top:40%;
-}
-
-#theScore{
-    font-size: 2em;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 #button{
@@ -425,5 +423,3 @@ h2{
     background: url("assets/beier1.png") no-repeat  center 0;
     background-size: contain;
 }
-
-
