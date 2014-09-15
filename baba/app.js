@@ -5,8 +5,8 @@
  * @type {{Width: number, Height: number}}
  */
 var DisPlay = {
-    Width: window.innerWidth,
-    Height: window.innerHeight
+  Width: window.innerWidth,
+  Height: window.innerHeight
 };
 
 /**
@@ -14,29 +14,14 @@ var DisPlay = {
  * @type {{Width: number, Height: number}}
  */
 var BoySize = {
-    Width: 120,
-    Height: 210
+  Width: 120,
+  Height: 210
 };
 
 /**
  * 中间小孩的名字,要和图片同名
  */
 var BoyName;
-
-/**
- * 选择小孩名字中文
- */
-var childname;
-
-
-/**
- * 结束辞
- */
-var GameOverSpan ={
-    gameoverComments:0,
-    fight:0
-};
-
 
 /**
  * 循环按钮是正方形,这是他的原图片的边长
@@ -99,6 +84,12 @@ var timer;
 var score = 0;
 
 /**
+ * 分数在所有分数中的百分比
+ * @type {number}
+ */
+var rankBi = 0;
+
+/**
  * 最下面轮播的按钮
  * @type {Array}
  */
@@ -133,134 +124,134 @@ var ShowLabel;
 var game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
 
 var main_state = {
-    preload: preload,
-    create: create
+  preload: preload,
+  create: create
 };
 game.state.add('main', main_state);
 
 function preload() {
 
 
-    //加载所需资源
-    game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
-    game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
-    game.load.image('gameback', 'assets/gameback.png');
+  //加载所需资源
+  game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
+  game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
+  game.load.image('gameback', 'assets/gameback.png');
 
 }
 
 function create() {
 
-    game.add.sprite(0, 0, 'gameback');
+  game.add.sprite(0, 0, 'gameback');
 
-    //生成计时器
-    timer = game.time.create(false);
-    timer.loop(DelayTime, goNext, this);
-    timer.start();
+  //生成计时器
+  timer = game.time.create(false);
+  timer.loop(DelayTime, goNext, this);
+  timer.start();
 
-    //生成答对时的动画按钮
-    MarchAnimaBtn = game.add.sprite(0, 0, 'btn', 0);
-    MarchAnimaBtn.anchor.set(0.5);
-    MarchAnimaBtn.scale.set(ShouldScale);
-    MarchAnimaBtn.exists = false;
-    game.physics.enable(MarchAnimaBtn);
+  //生成答对时的动画按钮
+  MarchAnimaBtn = game.add.sprite(0, 0, 'btn', 0);
+  MarchAnimaBtn.anchor.set(0.5);
+  MarchAnimaBtn.scale.set(ShouldScale);
+  MarchAnimaBtn.exists = false;
+  game.physics.enable(MarchAnimaBtn);
 
-    //生成显示给用户的文字
-    ShowLabel = game.add.text(DisPlay.Width / 2, 5, '0分', {font: "25px Arial", fill: "#fff", align: "center"});
-    ShowLabel.anchor.set(0.5, 0);
+  //生成显示给用户的文字
+  ShowLabel = game.add.text(DisPlay.Width / 2, 5, '0分', {font: "25px Arial", fill: "#fff", align: "center"});
+  ShowLabel.anchor.set(0.5, 0);
 
-    //设置中间小孩的图像的位置和动画
-    Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
-    Boy.anchor.set(0.5);
-    Boy.animations.add('happy', [0], 2);
-    Boy.animations.add('req', [1, 2], 2, true);
-    Boy.animations.add('cry', [2], 2);
+  //设置中间小孩的图像的位置和动画
+  Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
+  Boy.anchor.set(0.5);
+  Boy.animations.add('happy', [0], 2);
+  Boy.animations.add('req', [1, 2], 2, true);
+  Boy.animations.add('cry', [2], 2);
 
-    buildReq();
+  buildReq();
 
-    //生成下面一排的按钮
-    for (var i = 0; i < LoopBtnCount; i++) {
-        var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i % NowLoopChooseCount);
-        one.anchor.set(0.5);
-        one.scale.set(ShouldScale * 0.6);
-        one.alpha = 0.5;
-        LoopBtnList[i] = one;
-    }
-    //答案按钮
-    AnswerBtn = LoopBtnList[2];
-    AnswerBtn.alpha = 1;
-    AnswerBtn.scale.set(ShouldScale);
+  //生成下面一排的按钮
+  for (var i = 0; i < LoopBtnCount; i++) {
+    var one = game.add.sprite((i + 0.5) * LoopBtnDisplaySize, DisPlay.Height - LoopBtnDisplaySize * 0.5, 'btn', i % NowLoopChooseCount);
+    one.anchor.set(0.5);
+    one.scale.set(ShouldScale * 0.6);
+    one.alpha = 0.5;
+    LoopBtnList[i] = one;
+  }
+  //答案按钮
+  AnswerBtn = LoopBtnList[2];
+  AnswerBtn.alpha = 1;
+  AnswerBtn.scale.set(ShouldScale);
 
-    updateReq();
+  updateReq();
 }
 
 /**
  * 轮播按钮到下一个状态
  */
 function goNext() {
-    for (var i = 0; i < LoopBtnCount - 1; i++) {
-        LoopBtnList[i].frame = LoopBtnList[i + 1].frame;
-    }
-    LoopBtnList[LoopBtnList.length - 1].frame = Math.floor(Math.random() * NowLoopChooseCount);
+  for (var i = 0; i < LoopBtnCount - 1; i++) {
+    LoopBtnList[i].frame = LoopBtnList[i + 1].frame;
+  }
+  LoopBtnList[LoopBtnList.length - 1].frame = Math.floor(Math.random() * NowLoopChooseCount);
 }
 
 /**
  * 生成所有的请求按钮,顺时针旋转平均分
  */
 function buildReq() {
-    //先清空原来所有的
-    for (var i = 0; i < ReqBtnList.length; i++) {
-        ReqBtnList[i].destroy();
-    }
-    for (var i = 0; i < NowReqBtnCount; i++) {
-        var distance = Boy.width;
-        var degree = 2 * Math.PI * i / NowReqBtnCount;
-        var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i % NowLoopChooseCount);
-        one.anchor.set(0.5);
-        one.scale.set(ShouldScale * 0.8);
-        ReqBtnList[i] = one;
-    }
+  //先清空原来所有的
+  for (var i = 0; i < ReqBtnList.length; i++) {
+    ReqBtnList[i].destroy();
+  }
+  for (var i = 0; i < NowReqBtnCount; i++) {
+    var distance = Boy.width;
+    var degree = 2 * Math.PI * i / NowReqBtnCount;
+    var one = game.add.sprite(Boy.x + distance * Math.cos(degree), Boy.y + distance * Math.sin(degree), 'btn', i % NowLoopChooseCount);
+    one.anchor.set(0.5);
+    one.scale.set(ShouldScale * 0.8);
+    ReqBtnList[i] = one;
+  }
 }
 
 /**
  * 更新请求状态
  */
 function updateReq(beginIndex) {
-    Boy.play('req');
-    //分数每增加3分就变化一下难度
-    if (score != 0 && score % 3 == 0) {
-        //如果有更多选项选修就变多
-        if (NowLoopChooseCount <= LoopBtnSumCount) {
-            NowLoopChooseCount++;
-        }
-        //如果请求按钮的数量的/2
-        if (NowReqBtnCount <= NowLoopChooseCount / 2) {
-            NowReqBtnCount++;
-        }
-        //下面越来越快
-        DelayTime *= 0.95;
-        buildReq();
-        return;
+  Boy.play('req');
+  //分数每增加3分就变化一下难度
+  if (score != 0 && score % 3 == 0) {
+    //如果有更多选项选修就变多
+    if (NowLoopChooseCount <= LoopBtnSumCount) {
+      NowLoopChooseCount++;
     }
-    for (var i = beginIndex; i < ReqBtnList.length - 1; i++) {
-        ReqBtnList[i].frame = ReqBtnList[i + 1].frame;
+    //如果请求按钮的数量的/2
+    if (NowReqBtnCount <= NowLoopChooseCount / 2) {
+      NowReqBtnCount++;
     }
-    ReqBtnList[ReqBtnList.length - 1].frame = Math.floor(Math.random() * NowLoopChooseCount);
+    //下面越来越快
+    DelayTime *= 0.95;
+    buildReq();
+    return;
+  }
+  for (var i = beginIndex; i < ReqBtnList.length - 1; i++) {
+    ReqBtnList[i].frame = ReqBtnList[i + 1].frame;
+  }
+  ReqBtnList[ReqBtnList.length - 1].frame = Math.floor(Math.random() * NowLoopChooseCount);
 }
 
 /**
  * 检查第三个轮播按钮的值是否在所有的请求按钮里
  */
 function checkNow() {
-    for (var i = 0; i < ReqBtnList.length; i++) {
-        if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
-            score++;
-            ShowLabel.text = score + '分';
-            showMarchAnima(i);//这里面有updateReq
-            return;
-        }
+  for (var i = 0; i < ReqBtnList.length; i++) {
+    if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
+      score++;
+      ShowLabel.text = score + '分';
+      showMarchAnima(i);//这里面有updateReq
+      return;
     }
+  }
 
-    gameOver();
+  gameOver();
 
 }
 
@@ -268,56 +259,55 @@ function checkNow() {
  * @param desIndex
  */
 function showMarchAnima(desIndex) {
-    MarchAnimaBtn.reset(AnswerBtn.x, AnswerBtn.y);
-    MarchAnimaBtn.frame = AnswerBtn.frame;
-    var tween = game.add.tween(MarchAnimaBtn).to({
-        x: Boy.x,
-        y: Boy.y
-    }, DelayTime, Phaser.Easing.Quadratic.InOut);
-    tween.onComplete.add(function () {
-        Boy.play('happy');
-        MarchAnimaBtn.exists = false;
-    }, this);
-    tween.start();
-    timer.add(DelayTime * 2, updateReq, this, desIndex);
+  MarchAnimaBtn.reset(AnswerBtn.x, AnswerBtn.y);
+  MarchAnimaBtn.frame = AnswerBtn.frame;
+  var tween = game.add.tween(MarchAnimaBtn).to({
+    x: Boy.x,
+    y: Boy.y
+  }, DelayTime, Phaser.Easing.Quadratic.InOut);
+  tween.onComplete.add(function () {
+    Boy.play('happy');
+    MarchAnimaBtn.exists = false;
+  }, this);
+  tween.start();
+  timer.add(DelayTime * 2, updateReq, this, desIndex);
 }
 
 /**
  * 重新开始游戏主场景
  */
 function restartGame(e) {
-    //如果提供了事件对象，则这是一个非IE浏览器
-    if (e && e.stopPropagation) {
-        e.stopPropagation();
-    } else {//否则，我们需要使用IE的方式来取消事件冒泡
-        window.event.cancelBubble = true;
-    }
-    score = 0;
-    NowReqBtnCount = 2;
+  //如果提供了事件对象，则这是一个非IE浏览器
+  if (e && e.stopPropagation) {
+    e.stopPropagation();
+  } else {//否则，我们需要使用IE的方式来取消事件冒泡
+    window.event.cancelBubble = true;
+  }
+  score = 0;
+  NowReqBtnCount = 2;
 
-    ScreenChange(1);
-    game.state.start('main');
+  ScreenChange(1);
+  game.state.start('main');
 }
 
 /**
  * 开始游戏主场景
  */
 function startGame() {
-    ScreenChange(1);
-    game.state.start('main');
+  ScreenChange(1);
+  game.state.start('main');
 }
 
 /**
  * 进入游戏结束
  */
 function gameOver() {
-    commitInfo();
-    ChangeComments(score);
-    Boy.play('cry');
-    //把网页的标题设置为分数,便于分享到朋友圈
-    document.title = '我获得了' + score + '分';
+  Boy.play('cry');
+  //把网页的标题设置为分数,便于分享到朋友圈
+  document.title = '我获得了' + score + '分';
+  commitInfo(function () {
     timer.add(DelayTime * 2, ScreenChange, this, 2);
-    console.log("you chose:"+BoyName);
+  });
 }
 
 /**
@@ -325,7 +315,7 @@ function gameOver() {
  * */
 
 function gameStart() {
-    ScreenChange(0);
+  ScreenChange(0);
 
 }
 
@@ -334,7 +324,7 @@ function gameStart() {
  * 进入角色选择
  */
 function RoleOpen() {
-    ScreenChange(3);
+  ScreenChange(3);
 }
 
 /**
@@ -346,71 +336,64 @@ function RoleOpen() {
  */
 function ScreenChange(index) {
 
-    var hula = document.getElementById("isWhonowDiv");
-    var the = document.getElementById("the");
-    var gamestartObj = document.getElementById("GameStart");
-    var gamestartMain = document.getElementById("gamestartMain");
-    var gameoverObj = document.getElementById("GameOver");
-    var gameoverMain = document.getElementById("gameoverMain");
-    var roleObj = document.getElementById("Role");
+  var hula = document.getElementById("isWhonowDiv");
+  var the = document.getElementById("the");
+  var gamestartObj = document.getElementById("GameStart");
+  var gamestartMain = document.getElementById("gamestartMain");
+  var gameoverObj = document.getElementById("GameOver");
+  var gameoverMain = document.getElementById("gameoverMain");
+  var roleObj = document.getElementById("Role");
 
 
-    if (index == 0) {
-        //场景0 开屏
+  if (index == 0) {
+    //场景0 开屏
 
-        the.style.display = "none";
-        gameoverObj.style.display = "none";
-        roleObj.style.display = "none";
-        gamestartObj.style.display = "block";
-        gamestartMain.style.width = DisPlay.Width + "px";
-        gamestartMain.style.height = DisPlay.Height + "px";
+    the.style.display = "none";
+    gameoverObj.style.display = "none";
+    roleObj.style.display = "none";
+    gamestartObj.style.display = "block";
+    gamestartMain.style.width = DisPlay.Width + "px";
+    gamestartMain.style.height = DisPlay.Height + "px";
 
-        console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
+    console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
 
-    }
-    else if (index == 1) {
-        //场景1 游戏界面
-        hula.style.display = "none";
-        gamestartObj.style.display = "none";
-        gameoverObj.style.display = "none";
-        roleObj.style.display = "none";
-        the.style.display = "block";
-        console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
-    }
-    else if (index == 2) {
-        //场景2 结束界面
-        hula.style.display = "block";
-        the.style.display = "none";
-        gamestartObj.style.display = "none";
-        roleObj.style.display = "none";
-        gameoverObj.style.display = "block";
-        gameoverMain.style.width = DisPlay.Width + "px";
-        gameoverMain.style.height = DisPlay.Height + "px";
-        var comments = document.getElementById("comments");
-        comments.innerHTML = GameOverSpan.gameoverComments;
-        var Cfight = document.getElementById("fight");
-        Cfight.innerHTML = GameOverSpan.fight;
-        var Cname = document.getElementById("childname");
-        Cname.innerHTML = childname;
-        var thescore = document.getElementById("theScore");
-        thescore.innerHTML = score;
+  }
+  else if (index == 1) {
+    //场景1 游戏界面
+    hula.style.display = "none";
+    gamestartObj.style.display = "none";
+    gameoverObj.style.display = "none";
+    roleObj.style.display = "none";
+    the.style.display = "block";
+    console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
+  }
+  else if (index == 2) {
+    //场景2 结束界面
+    hula.style.display = "block";
+    the.style.display = "none";
+    gamestartObj.style.display = "none";
+    roleObj.style.display = "none";
+    gameoverObj.style.display = "block";
+    gameoverMain.style.width = DisPlay.Width + "px";
+    gameoverMain.style.height = DisPlay.Height + "px";
+    var thescore = document.getElementById("theScore");
+    thescore.innerHTML = score + '打败了全国 ' + rankBi + '% 的玩家';
+    console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
 
-        console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
+  }
 
-    }
+  else if (index == 3) {
+    //场景3 角色选择
+    hula.style.display = "none";
+    roleObj.style.display = "block";
+    the.style.display = "none";
+    gamestartObj.style.display = "none";
+    gameoverObj.style.display = "none";
+    roleObj.style.width = DisPlay.Width + "px";
+    roleObj.style.height = DisPlay.Height + "px";
+    console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
 
-    else if (index == 3) {
-        //场景3 角色选择
-        hula.style.display = "none";
-        roleObj.style.display = "block";
-        the.style.display = "none";
-        gamestartObj.style.display = "none";
-        gameoverObj.style.display = "none";
-        roleObj.style.width = DisPlay.Width + "px";
-        roleObj.style.height = DisPlay.Height + "px";
-        console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
-
-    }
+  }
 }
 
 /**
@@ -419,48 +402,9 @@ function ScreenChange(index) {
  * @param id 每个选择的id
  */
 function roleChoose(name, id) {
-    BoyName = name;
-    ChangeName(name);
-    startGame();
-    ChooseID = id;
-}
-
-
-/**
- * 转换小孩名字
- * @param name 小孩拼音名字
- */
-function ChangeName(name){
-    switch (name){
-        case "joe":childname = "Joe";break;
-        case "yangyangyang":childname ="杨阳洋";break;
-        case "feynman":childname ="Feynman";break;
-        case "duoduo":childname ="黄多多";break;
-        case "grace":childname ="姐姐";break;
-        case "beier":childname ="贝儿";break;
-        default :break;
-    }
-
-    return childname;
-}
-
-function ChangeComments(score){
-
-    var fightspan = score/3*5;
-    GameOverSpan.fight = fightspan.toFixed(0)+"%";
-
-    if(fightspan < 25 ){//百分比
-        GameOverSpan.gameoverComments = "坑娃老爹";
-    }
-    else if (fightspan >= 25 && fightspan < 50 ){
-        GameOverSpan.gameoverComments = "靠谱老爸";
-    }
-    else
-    {
-        GameOverSpan.gameoverComments = "超级奶爸";
-    }
-    return   GameOverSpan;
-
+  BoyName = name;
+  startGame();
+  ChooseID = id;
 }
 
 /////////////////信息收集////////////////////
@@ -470,19 +414,19 @@ function ChangeComments(score){
  * @returns {string}
  */
 function makeApiUrl(path) {
-    /**
-     * 主机基本URL
-     * @type {string}
-     */
-    var HostURL = "http://42.96.157.54:13145/api/";
+  /**
+   * 主机基本URL
+   * @type {string}
+   */
+  var HostURL = "http://42.96.157.54:13145/api/";
 
-    /**
-     * 使用jsonp方法跨域获得JSON的回调函数
-     * @type {string}
-     */
-    var CallBackName = '?callback=?';
+  /**
+   * 使用jsonp方法跨域获得JSON的回调函数
+   * @type {string}
+   */
+  var CallBackName = '?callback=?';
 
-    return HostURL + path + CallBackName;
+  return HostURL + path + CallBackName;
 }
 
 var GameID = 1;
@@ -494,16 +438,16 @@ var url_AddItem = makeApiUrl('add');
 /**
  * 向服务器发送一条收集到的信息
  */
-function commitInfo() {
-    var one = {
-        gameId: GameID,
-        chooseId: ChooseID,
-        score: score
-    };
-
-
-    $.getJSON(url_AddItem, one).done(function (data) {
-        console.log(data);
-    })
+function commitInfo(callback) {
+  var one = {
+    gameId: GameID,
+    chooseId: ChooseID,
+    score: score
+  };
+  $.getJSON(url_AddItem, one).done(function (data) {
+    var bi = data.rank / data.sum;
+    rankBi = 100 - bi.toFixed(1) * 100;
+    callback();
+  })
 }
 
