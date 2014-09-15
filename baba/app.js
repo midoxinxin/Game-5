@@ -463,8 +463,6 @@ function ChangeComments(score){
 
 }
 
-
-
 /////////////////信息收集////////////////////
 /**
  * 使用jsonp方法跨域获得JSON时传入JSP部分路径生成完整标准jsonp URL
