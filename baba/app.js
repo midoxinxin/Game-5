@@ -84,12 +84,6 @@ var timer;
 var score = 0;
 
 /**
- * 分数在所有分数中的百分比
- * @type {number}
- */
-var rankBi = 0;
-
-/**
  * 最下面轮播的按钮
  * @type {Array}
  */
@@ -302,12 +296,11 @@ function startGame() {
  * 进入游戏结束
  */
 function gameOver() {
+  commitInfo();
   Boy.play('cry');
   //把网页的标题设置为分数,便于分享到朋友圈
   document.title = '我获得了' + score + '分';
-  commitInfo(function () {
-    timer.add(DelayTime * 2, ScreenChange, this, 2);
-  });
+  timer.add(DelayTime * 2, ScreenChange, this, 2);
 }
 
 /**
@@ -377,7 +370,7 @@ function ScreenChange(index) {
     gameoverMain.style.width = DisPlay.Width + "px";
     gameoverMain.style.height = DisPlay.Height + "px";
     var thescore = document.getElementById("theScore");
-    thescore.innerHTML = score + '打败了全国 ' + rankBi + '% 的玩家';
+    thescore.innerHTML = score;
     console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
 
   }
@@ -438,16 +431,14 @@ var url_AddItem = makeApiUrl('add');
 /**
  * 向服务器发送一条收集到的信息
  */
-function commitInfo(callback) {
+function commitInfo() {
   var one = {
     gameId: GameID,
     chooseId: ChooseID,
     score: score
   };
   $.getJSON(url_AddItem, one).done(function (data) {
-    var bi = data.rank / data.sum;
-    rankBi = 100 - bi.toFixed(1) * 100;
-    callback();
+    console.log(data);
   })
 }
 
