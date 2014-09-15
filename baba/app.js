@@ -84,6 +84,12 @@ var timer;
 var score = 0;
 
 /**
+ * 分数在所有分数中的百分比
+ * @type {number}
+ */
+var rankBi = 0;
+
+/**
  * 最下面轮播的按钮
  * @type {Array}
  */
@@ -296,11 +302,12 @@ function startGame() {
  * 进入游戏结束
  */
 function gameOver() {
-  commitInfo();
   Boy.play('cry');
   //把网页的标题设置为分数,便于分享到朋友圈
   document.title = '我获得了' + score + '分';
-  timer.add(DelayTime * 2, ScreenChange, this, 2);
+  commitInfo(function () {
+    timer.add(DelayTime * 2, ScreenChange, this, 2);
+  });
 }
 
 /**
@@ -340,7 +347,7 @@ function ScreenChange(index) {
 
   if (index == 0) {
     //场景0 开屏
-    
+
     the.style.display = "none";
     gameoverObj.style.display = "none";
     roleObj.style.display = "none";
@@ -353,7 +360,7 @@ function ScreenChange(index) {
   }
   else if (index == 1) {
     //场景1 游戏界面
-      hula.style.display = "none";
+    hula.style.display = "none";
     gamestartObj.style.display = "none";
     gameoverObj.style.display = "none";
     roleObj.style.display = "none";
@@ -362,7 +369,7 @@ function ScreenChange(index) {
   }
   else if (index == 2) {
     //场景2 结束界面
-      hula.style.display = "block";
+    hula.style.display = "block";
     the.style.display = "none";
     gamestartObj.style.display = "none";
     roleObj.style.display = "none";
@@ -370,14 +377,14 @@ function ScreenChange(index) {
     gameoverMain.style.width = DisPlay.Width + "px";
     gameoverMain.style.height = DisPlay.Height + "px";
     var thescore = document.getElementById("theScore");
-    thescore.innerHTML = score;
+    thescore.innerHTML = score + '打败了全国 ' + rankBi + '% 的玩家';
     console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
 
   }
 
   else if (index == 3) {
     //场景3 角色选择
-      hula.style.display = "none";
+    hula.style.display = "none";
     roleObj.style.display = "block";
     the.style.display = "none";
     gamestartObj.style.display = "none";
@@ -431,14 +438,16 @@ var url_AddItem = makeApiUrl('add');
 /**
  * 向服务器发送一条收集到的信息
  */
-function commitInfo() {
+function commitInfo(callback) {
   var one = {
     gameId: GameID,
     chooseId: ChooseID,
     score: score
   };
   $.getJSON(url_AddItem, one).done(function (data) {
-    console.log(data);
+    var bi = data.rank / data.sum;
+    rankBi = 100 - bi.toFixed(1) * 100;
+    callback();
   })
 }
 
