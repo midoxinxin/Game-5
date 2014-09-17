@@ -73,6 +73,7 @@ var NowLoopChooseCount = 5;
  * 循环按钮是正方形,这是他的在屏幕上真正显示的边长
  * @type {number}
  */
+
 var LoopBtnDisplaySize = DisPlay.Width / LoopBtnCount;
 
 /**
@@ -144,7 +145,7 @@ function preload() {
     //加载所需资源
     game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
     game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
-    game.load.image('gameback', 'assets/gameback.jpg');
+    game.load.image('gameback', 'assets/gameback.jpg',DisPlay.Width,DisPlay.Height);
 
 }
 
@@ -172,7 +173,7 @@ function create() {
     Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
     Boy.anchor.set(0.5);
     Boy.animations.add('happy', [0], 2);
-    Boy.animations.add('req', [1, 2], 2, true);
+    Boy.animations.add('req', [1], 2);
     Boy.animations.add('cry', [2], 2);
 
     buildReq();
