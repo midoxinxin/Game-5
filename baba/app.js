@@ -295,6 +295,7 @@ function restartGame(e) {
     }
     score = 0;
     NowReqBtnCount = 2;
+    DelayTime = 600;
 
     ScreenChange(1);
     game.state.start('main');
