@@ -42,7 +42,7 @@ var GameOverSpan ={
  * 循环按钮是正方形,这是他的原图片的边长
  * @type {number}
  */
-var LoopBtnImgSize = 140;
+var LoopBtnImgSize = 75;
 
 /**
  * 一共为游戏提供了多少种按钮
@@ -145,7 +145,7 @@ function preload() {
     //加载所需资源
     game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
     game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
-    game.load.image('gameback', 'assets/gameback.jpg',DisPlay.Width,DisPlay.Height);
+    game.load.image('gameback', 'assets/gameback.jpg');
 
 }
 
