@@ -172,8 +172,8 @@ function create() {
     //设置中间小孩的图像的位置和动画
     Boy = game.add.sprite(DisPlay.Width / 2, DisPlay.Height / 2, BoyName, 0);
     Boy.anchor.set(0.5);
-    Boy.animations.add('happy', [0], 2);
-    Boy.animations.add('req', [1], 2);
+    Boy.animations.add('happy', [1], 2);
+    Boy.animations.add('req', [0], 2);
     Boy.animations.add('cry', [2], 2);
 
     buildReq();
