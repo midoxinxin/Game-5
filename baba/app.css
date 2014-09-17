@@ -93,7 +93,7 @@ h2{
 
 
 #gameoverMain{
-    background: url("assets/gameback.png") no-repeat center center;
+    background: url("assets/gameback.jpg") no-repeat center center;
     background-size:cover;
     -webkit-background-size:cover;
     -moz-background-size:cover;
@@ -125,7 +125,7 @@ h2{
     position: absolute;
     color: #34495E;
     top:40%;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
 }
 
@@ -371,7 +371,7 @@ h2{
     top: 0;
     left: 0;
     z-index: 101;
-    background: url("assets/gameback.png") no-repeat center center;
+    background: url("assets/gameback.jpg") no-repeat center center;
     background-size:cover;
     -webkit-background-size:cover;
     -moz-background-size:cover;
@@ -387,39 +387,31 @@ h2{
 
 #duoduo,#feynman,#yangyangyang,#grace,#joe,#beier{
     margin: 0 auto;
-    height: 100%;
-    width: auto;
+    height: 210px;
+    width: 120px;
     cursor: pointer;
 }
 
 #duoduo{
-    background: url("assets/duoduo1.png") no-repeat center 0;
-    background-size: contain;
-
+    background: url("assets/duoduo.png") no-repeat 0 0;
 }
 
 #grace{
-    background: url("assets/grace1.png") no-repeat center 0;
-    background-size: contain;
+    background: url("assets/grace.png") no-repeat 0 0;
 }
 
-
 #yangyangyang{
-    background: url("assets/yangyangyang1.png") no-repeat center 0;
-    background-size: contain;
+    background: url("assets/yangyangyang.png") no-repeat 0 0;
 }
 
 #feynman{
-    background: url("assets/feynman1.png") no-repeat center 0;
-    background-size: contain;
+    background: url("assets/feynman.png") no-repeat 0 0;
 }
 
 #joe{
-    background: url("assets/joe1.png") no-repeat center 0;
-    background-size: contain;
+    background: url("assets/joe.png") no-repeat 0 0;
 }
 
 #beier{
-    background: url("assets/beier1.png") no-repeat  center 0;
-    background-size: contain;
+    background: url("assets/beier.png") no-repeat  0 0;
 }

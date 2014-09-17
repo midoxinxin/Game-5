@@ -144,7 +144,7 @@ function preload() {
     //加载所需资源
     game.load.spritesheet('btn', 'assets/btn.png', LoopBtnImgSize, LoopBtnImgSize);
     game.load.spritesheet(BoyName, 'assets/' + BoyName + '.png', BoySize.Width, BoySize.Height);
-    game.load.image('gameback', 'assets/gameback.png');
+    game.load.image('gameback', 'assets/gameback.jpg');
 
 }
 
@@ -165,7 +165,7 @@ function create() {
     game.physics.enable(MarchAnimaBtn);
 
     //生成显示给用户的文字
-    ShowLabel = game.add.text(DisPlay.Width / 2, 5, '0分', {font: "25px Arial", fill: "#fff", align: "center"});
+    ShowLabel = game.add.text(DisPlay.Width / 2, 5, '0', {font: "25px Arial", fill: "#000", align: "center"});
     ShowLabel.anchor.set(0.5, 0);
 
     //设置中间小孩的图像的位置和动画
@@ -254,7 +254,7 @@ function checkNow() {
     for (var i = 0; i < ReqBtnList.length; i++) {
         if (LoopBtnList[2].frame == ReqBtnList[i].frame) {
             score++;
-            ShowLabel.text = score + '分';
+            ShowLabel.text = score;
             showMarchAnima(i);//这里面有updateReq
             return;
         }
