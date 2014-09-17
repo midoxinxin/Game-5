@@ -280,7 +280,7 @@ h2{
 .fancy{
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
-    background: url("assets/logo.png") no-repeat center center;
+    background: url("assets/logo.gif") no-repeat center center;
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
@@ -393,25 +393,25 @@ h2{
 }
 
 #duoduo{
-    background: url("assets/duoduo.png") no-repeat 0 0;
+    background: url("assets/duoduo.gif") no-repeat 0 0;
 }
 
 #grace{
-    background: url("assets/grace.png") no-repeat 0 0;
+    background: url("assets/grace.gif") no-repeat 0 0;
 }
 
 #yangyangyang{
-    background: url("assets/yangyangyang.png") no-repeat 0 0;
+    background: url("assets/yangyangyang.gif") no-repeat 0 0;
 }
 
 #feynman{
-    background: url("assets/feynman.png") no-repeat 0 0;
+    background: url("assets/feynman.gif") no-repeat 0 0;
 }
 
 #joe{
-    background: url("assets/joe.png") no-repeat 0 0;
+    background: url("assets/joe.gif") no-repeat 0 0;
 }
 
 #beier{
-    background: url("assets/beier.png") no-repeat  0 0;
+    background: url("assets/beier.gif") no-repeat  0 0;
 }
