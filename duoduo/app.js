@@ -151,6 +151,7 @@ function randomMain(count) {
 			btnList.push(oneBtn);
 			$(main).append(oneBtn);
 		}
+
 	} else {//还有多的就删除掉
 		shouldAddCount = -shouldAddCount;
 		for (var i = 0; i < shouldAddCount; i++) {
