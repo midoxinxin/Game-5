@@ -1,3 +1,42 @@
+#gamestartMain{
+    background: url("http://myccnutest.qiniudn.com/baba-back2.jpg") no-repeat center center;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    -webkit-animation:bgimg 40s linear infinite normal;
+    -o-animation:bgimg 40s linear infinite normal;
+    -moz-animation:bgimg 40s linear infinite normal;
+    animation:bgimg 40s linear infinite normal;
+
+}
+
+@media screen and (max-width: 768px){
+
+    #startgameButton{
+        background: url("http://myccnutest.qiniudn.com/baba-notice.png") no-repeat;
+        background-size: 100%;
+    }
+}
+
+
+.fancy{
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: url("http://myccnutest.qiniudn.com/baba-logo.gif") no-repeat center center;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    opacity: 0;
+    width: 50%;
+    height: 50%;
+    -webkit-animation: fancymodal 2s ease 1s 1 forwards ;
+    -o-animation: fancymodal 2s ease 1s 1 forwards ;
+    -moz-animation: fancymodal 2s ease 1s 1 forwards ;
+    animation: fancymodal 2s ease 1s 1 forwards ;
+
+}
+
 body,html,canvas,div{
     margin:  0;
     padding: 0;
@@ -60,20 +99,6 @@ h2{
 
 }
 
-#gamestartMain{
-    background: url("assets/back2.jpg") no-repeat center center;
-    background-size:cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    -webkit-animation:bgimg 40s linear infinite normal;
-    -o-animation:bgimg 40s linear infinite normal;
-    -moz-animation:bgimg 40s linear infinite normal;
-    animation:bgimg 40s linear infinite normal;
-
-}
-
-
 @-webkit-keyframes bgimg{
     from { background-position: 0 0; }
     to { background-position: 100% 0; }
@@ -89,17 +114,6 @@ h2{
 @keyframes bgimg{
     from { background-position: 0 0; }
     to { background-position: 100% 0; }
-}
-
-
-#gameoverMain{
-    background: url("assets/gameback.jpg") no-repeat center center;
-    background-size:cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    background-color: #fff;
-    opacity: 1;
 }
 
 #gameoverText,#gamestartText{
@@ -143,17 +157,6 @@ h2{
 }
 #button a{
     text-decoration: none;
-}
-
-#share{
-    background: url("assets/share.png") no-repeat;
-    background-size: contain;
-    width: 150px;
-    height: 62px;
-    float: right;
-    top: 0;
-    right: 0;
-
 }
 
 
@@ -219,15 +222,6 @@ h2{
 
 }
 
-@media screen and (max-width: 768px){
-
-    #startgameButton{
-        background: url("assets/notice.png") no-repeat;
-        background-size: 100%;
-    }
-}
-
-
 #startgameButton a{
 
  }
@@ -276,26 +270,6 @@ h2{
         opacity: 1;
     }
 }
-
-.fancy{
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: url("assets/logo.gif") no-repeat center center;
-    -moz-background-size: contain;
-    -o-background-size: contain;
-    background-size: contain;
-    opacity: 0;
-    width: 50%;
-    height: 50%;
-    -webkit-animation: fancymodal 2s ease 1s 1 forwards ;
-    -o-animation: fancymodal 2s ease 1s 1 forwards ;
-    -moz-animation: fancymodal 2s ease 1s 1 forwards ;
-    animation: fancymodal 2s ease 1s 1 forwards ;
-
-
-}
-
-
 
 @-webkit-keyframes fancymodal{
     0%{
@@ -371,7 +345,7 @@ h2{
     top: 0;
     left: 0;
     z-index: 101;
-    background: url("assets/gameback.jpg") no-repeat center center;
+    background: url("http://myccnutest.qiniudn.com/baba-gameback.jpg") no-repeat center center;
     background-size:cover;
     -webkit-background-size:cover;
     -moz-background-size:cover;
@@ -393,25 +367,46 @@ h2{
 }
 
 #duoduo{
-    background: url("assets/duoduo.gif") no-repeat 0 0;
+    background: url("http://myccnutest.qiniudn.com/baba-duoduo.gif") no-repeat 0 0;
 }
 
 #grace{
-    background: url("assets/grace.gif") no-repeat 0 0;
+    background: url("http://myccnutest.qiniudn.com/baba-grace.gif") no-repeat 0 0;
 }
 
 #yangyangyang{
-    background: url("assets/yangyangyang.gif") no-repeat 0 0;
+    background: url("http://myccnutest.qiniudn.com/baba-yangyangyang.gif") no-repeat 0 0;
 }
 
 #feynman{
-    background: url("assets/feynman.gif") no-repeat 0 0;
+    background: url("http://myccnutest.qiniudn.com/baba-feynman.gif") no-repeat 0 0;
 }
 
 #joe{
-    background: url("assets/joe.gif") no-repeat 0 0;
+    background: url("http://myccnutest.qiniudn.com/baba-joe.gif") no-repeat 0 0;
 }
 
 #beier{
-    background: url("assets/beier.gif") no-repeat  0 0;
+    background: url("http://myccnutest.qiniudn.com/baba-beier.gif") no-repeat  0 0;
+}
+
+#share{
+    background: url("http://myccnutest.qiniudn.com/baba-share.png") no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 62px;
+    float: right;
+    top: 0;
+    right: 0;
+
+}
+
+#gameoverMain{
+    background: url("http://myccnutest.qiniudn.com/baba-gameback.jpg") no-repeat center center;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-color: #fff;
+    opacity: 1;
 }
