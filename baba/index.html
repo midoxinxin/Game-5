@@ -1,99 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="app.css">
-    <title>给萌娃喂食</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="app.css">
+  <title>给萌娃喂食</title>
 </head>
 
 <body onload="gameStart()" ontouchstart="checkNow()" onkeypress="checkNow()">
 <!--game start display-->
 <div id="GameStart" style="display: none;">
-    <div id="gamestartMain">
-        <div id="gamestartText">
-            <h2></h2>
-        </div>
-
-        <div class="fancy" style="margin: 0 auto; padding: 0">
-        </div>
-
-        <div id="startgameButton">
-            <a href="javascript:void(0);" onclick="RoleOpen()" class="btn btn-block btn-lg redbuttonColor">
-                <p>当宝贝请求的食物恰好出现在中间时，点击屏幕任意位置以完成喂食</p>
-                <h4>我知道了</h4>
-            </a>
-        </div>
-
-
+  <div id="gamestartMain">
+    <div id="gamestartText">
+      <h2></h2>
     </div>
+
+    <div class="fancy" style="margin: 0 auto; padding: 0">
+    </div>
+
+    <div id="startgameButton">
+      <a href="javascript:void(0);" onclick="RoleOpen()" class="btn btn-block btn-lg redbuttonColor">
+        <p>当宝贝请求的食物恰好出现在中间时，点击屏幕任意位置以完成喂食</p>
+        <h4>我知道了</h4>
+      </a>
+    </div>
+
+
+  </div>
 </div>
 
 
 <!--role choose display-->
 <div id="Role" style="display: none;">
-    <div class="role">
-        <div id="duoduo" onclick="roleChoose('duoduo',1)"></div>
-    </div>
-    <div class="role">
-        <div id="feynman" onclick="roleChoose('feynman',2)"></div>
-    </div>
-    <div class="role">
-        <div id="joe" onclick="roleChoose('joe',3)"></div>
-    </div>
-    <div class="role">
-        <div id="grace" onclick="roleChoose('grace',4)"></div>
-    </div>
-    <div class="role">
-        <div id="yangyangyang" onclick="roleChoose('yangyangyang',5)"></div>
-    </div>
-    <div class="role">
-        <div id="beier" onclick="roleChoose('beier',6)"></div>
-    </div>
+  <div class="role">
+    <div id="duoduo" onclick="roleChoose('duoduo',1)"></div>
+  </div>
+  <div class="role">
+    <div id="feynman" onclick="roleChoose('feynman',2)"></div>
+  </div>
+  <div class="role">
+    <div id="joe" onclick="roleChoose('joe',3)"></div>
+  </div>
+  <div class="role">
+    <div id="grace" onclick="roleChoose('grace',4)"></div>
+  </div>
+  <div class="role">
+    <div id="yangyangyang" onclick="roleChoose('yangyangyang',5)"></div>
+  </div>
+  <div class="role">
+    <div id="beier" onclick="roleChoose('beier',6)"></div>
+  </div>
 
 </div>
 
 
 <!--game over display-->
 <div id="GameOver" style="display: none;">
-    <div id="gameoverMain">
-        <div id="gameoverText">
-            <h2>游戏结束</h2>
-        </div>
-
-        <div id="yourScore">
-            <p>
-                <span id="comments"></span>!你给<span id="childname"></span>喂了<span id="theScore"></span>个食物
-                <br>
-                击败了全国
-                <span id="fight">9%</span>的老爸们
-            </p>
-        </div>
-
-        <div id="button">
-            <a id="replay" href="javascript:void(0);" onclick="restartGame()"
-               class="btn btn-block btn-lg bluebuttonColor">再来一次</a>
-        </div>
-
-        <div id="share"></div>
-
+  <div id="gameoverMain">
+    <div id="gameoverText">
+      <h2>游戏结束</h2>
     </div>
+
+    <div id="yourScore">
+      <p>
+          <span id="comments"></span>!你给<span id="childname"></span>喂了<span id="theScore"></span>个食物
+          <br>
+          击败了全国
+          <span id="fight">9%</span>的老爸们
+      </p>
+    </div>
+
+    <div id="button">
+      <a id="replay" href="javascript:void(0);" onclick="restartGame()"
+         class="btn btn-block btn-lg bluebuttonColor">再来一次</a>
+    </div>
+
+    <div id="share"></div>
+
+  </div>
 </div>
 <div id="the" style="display:block;"></div>
 
-<script src="http://myccnutest.qiniudn.com/baba-phaser-arcade-physics.min.js"></script>
-<script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+<!--javascript-->
 <script src="app.js"></script>
-<script src="http://static.whonow.cn/wap/isWhonow3.js"></script>
 <script src="../analytics.js"></script>
-
-<div style="display: none">
-    <img src="http://myccnutest.qiniudn.com/baba-beier.gif">
-    <img src="http://myccnutest.qiniudn.com/baba-duoduo.gif">
-    <img src="http://myccnutest.qiniudn.com/baba-feynman.gif">
-    <img src="http://myccnutest.qiniudn.com/baba-grace.gif">
-    <img src="http://myccnutest.qiniudn.com/baba-joe.gif">
-    <img src="http://myccnutest.qiniudn.com/baba-yangyangyang.gif">
-</div>
+<script src="lib/js/jquery.min.js"></script>
 </body>
 </html>

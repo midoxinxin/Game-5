@@ -360,7 +360,6 @@ function ScreenChange(index) {
 
     if (index == 0) {
         //场景0 开屏
-
         the.style.display = "none";
         gameoverObj.style.display = "none";
         roleObj.style.display = "none";
@@ -373,7 +372,6 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
-
         game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
         game.state.add('main', main_state);
         gamestartObj.style.display = "none";
