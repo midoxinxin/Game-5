@@ -371,6 +371,7 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
+
         hula.style.display = "none";
         gamestartObj.style.display = "none";
         gameoverObj.style.display = "none";
@@ -402,6 +403,10 @@ function ScreenChange(index) {
 
     else if (index == 3) {
         //场景3 角色选择
+//        $.getScript("assets/gameback.jpg");
+//        console.log("load gameback.jpg...");
+        $.getScript("lib/lib/js/phaser-arcade-physics.min.js");
+        console.log()
         hula.style.display = "none";
         roleObj.style.display = "block";
         the.style.display = "none";
@@ -563,3 +568,5 @@ document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         shareWeibo();
     });
 }, false);
+
+
