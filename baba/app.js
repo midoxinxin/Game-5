@@ -26,7 +26,7 @@ var BoyName;
 /**
  * 选择小孩名字中文
  */
-var childname;
+var childname='';
 
 
 /**
@@ -295,6 +295,7 @@ function restartGame(e) {
     }
     score = 0;
     NowReqBtnCount = 2;
+    DelayTime = 600;
 
     ScreenChange(1);
     game.state.start('main');
@@ -519,8 +520,7 @@ function commitInfo() {
 ////////////////微信接口/////////////////
 var imgUrl = 'https://github.com/gwuhaolin/Game-5/blob/gh-pages/baba/assets/notice.png';
 var lineLink = 'https://github.com/gwuhaolin/Game-5/blob/gh-pages/baba/index.html';
-//var descContent = "挑战你的直觉,找出颜色最大的方块";
-var shareTitle = '我给'+childname+'喂了'+score+'个食物，成为'+GameOverSpan.gameoverComments+'快来喂萌娃吧~'
+var shareTitle = '我给'+childname+'喂了'+score+'个食物，成为'+GameOverSpan.gameoverComments+'快来喂萌娃吧~';
 var appid = 'wx5c6c73bc34fc424e';
 
 function shareFriend() {
