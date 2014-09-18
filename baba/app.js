@@ -1,5 +1,7 @@
 "use strict";
 
+var game;
+
 /**
  * 游戏显示尺寸
  * @type {{Width: number, Height: number}}
@@ -131,15 +133,14 @@ var Boy;
  */
 var ShowLabel;
 
-var game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
+
 
 var main_state = {
     preload: preload,
     create: create
 };
-game.state.add('main', main_state);
 
-function preload() {
+function preload(game) {
 
 
     //加载所需资源
@@ -149,7 +150,7 @@ function preload() {
 
 }
 
-function create() {
+function create(game) {
 
     game.add.sprite(0, 0, 'gameback');
 
@@ -348,7 +349,6 @@ function RoleOpen() {
  */
 function ScreenChange(index) {
 
-    var hula = document.getElementById("isWhonowDiv");
     var the = document.getElementById("the");
     var gamestartObj = document.getElementById("GameStart");
     var gamestartMain = document.getElementById("gamestartMain");
@@ -372,8 +372,10 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
-
-        hula.style.display = "none";
+        $.getScript("lib/js/phaser-arcade-physics.min.js");
+        console.log("load phaser.js");
+        game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
+        game.state.add('main', main_state);
         gamestartObj.style.display = "none";
         gameoverObj.style.display = "none";
         roleObj.style.display = "none";
@@ -382,7 +384,7 @@ function ScreenChange(index) {
     }
     else if (index == 2) {
         //场景2 结束界面
-        hula.style.display = "block";
+        $.getScript("http://static.whonow.cn/wap/isWhonow3.js");
         the.style.display = "none";
         gamestartObj.style.display = "none";
         roleObj.style.display = "none";
@@ -404,11 +406,6 @@ function ScreenChange(index) {
 
     else if (index == 3) {
         //场景3 角色选择
-//        $.getScript("assets/gameback.jpg");
-//        console.log("load gameback.jpg...");
-        $.getScript("lib/lib/js/phaser-arcade-physics.min.js");
-        console.log()
-        hula.style.display = "none";
         roleObj.style.display = "block";
         the.style.display = "none";
         gamestartObj.style.display = "none";
