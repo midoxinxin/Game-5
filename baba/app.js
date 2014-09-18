@@ -411,8 +411,6 @@ function ScreenChange(index) {
         roleObj.style.width = DisPlay.Width + "px";
         roleObj.style.height = DisPlay.Height + "px";
         console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
-        $.getScript("lib/js/phaser-arcade-physics.min.js");
-        console.log("load phaser.js");
     }
 }
 
