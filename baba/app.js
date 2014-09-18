@@ -307,6 +307,8 @@ function restartGame(e) {
  */
 function startGame() {
     ScreenChange(1);
+    game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
+    game.state.add('main', main_state);
     game.state.start('main');
 }
 
@@ -372,8 +374,6 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
-        game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
-        game.state.add('main', main_state);
         gamestartObj.style.display = "none";
         gameoverObj.style.display = "none";
         roleObj.style.display = "none";
@@ -382,7 +382,7 @@ function ScreenChange(index) {
     }
     else if (index == 2) {
         //场景2 结束界面
-        $.getScript("http://static.whonow.cn/wap/isWhonow3.js");
+
         the.style.display = "none";
         gamestartObj.style.display = "none";
         roleObj.style.display = "none";
@@ -399,7 +399,7 @@ function ScreenChange(index) {
         thescore.innerHTML = score;
 
         console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
-
+        $.getScript("http://static.whonow.cn/wap/isWhonow3.js");
     }
 
     else if (index == 3) {
