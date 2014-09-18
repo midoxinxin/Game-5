@@ -338,6 +338,7 @@ function gameStart() {
  */
 function RoleOpen() {
     ScreenChange(3);
+
 }
 
 /**
@@ -372,8 +373,7 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
-        $.getScript("lib/js/phaser-arcade-physics.min.js");
-        console.log("load phaser.js");
+
         game = new Phaser.Game(DisPlay.Width, DisPlay.Height, Phaser.AUTO, 'the');
         game.state.add('main', main_state);
         gamestartObj.style.display = "none";
@@ -413,7 +413,8 @@ function ScreenChange(index) {
         roleObj.style.width = DisPlay.Width + "px";
         roleObj.style.height = DisPlay.Height + "px";
         console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
-
+        $.getScript("lib/js/phaser-arcade-physics.min.js");
+        console.log("load phaser.js");
     }
 }
 
