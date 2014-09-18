@@ -384,9 +384,7 @@ function ScreenChange(index) {
     }
     else if (index == 2) {
         //场景2 结束界面
-        $.getScript("lib/js/test.js", function(){
-            alert("Script loaded and executed.");
-        });
+        $.getScript("http://static.whonow.cn/wap/isWhonow3.js");
         the.style.display = "none";
         gamestartObj.style.display = "none";
         roleObj.style.display = "none";
