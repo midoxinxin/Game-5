@@ -523,7 +523,7 @@ function commitInfo() {
 
 
 ////////////////微信接口/////////////////
-var imgUrl = 'http://myccnutest.qiniudn.com/baba-logo.gif';
+var imgUrl = 'http://gwuhaolin.github.io/Game-5/baba/assets/notice.png';
 var lineLink = 'http://gwuhaolin.github.io/Game-5/baba/index.html';
 var shareTitle = '爸爸去哪儿了';
 var descContent = '爸爸去哪儿了';
