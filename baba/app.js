@@ -351,7 +351,7 @@ function RoleOpen() {
  * 当index=2:进入结束界面
  */
 function ScreenChange(index) {
-
+    var hula = document.getElementById("isWhonowDiv");
     var the = document.getElementById("the");
     var gamestartObj = document.getElementById("GameStart");
     var gamestartMain = document.getElementById("gamestartMain");
@@ -362,6 +362,7 @@ function ScreenChange(index) {
 
     if (index == 0) {
         //场景0 开屏
+
         the.style.display = "none";
         gameoverObj.style.display = "none";
         roleObj.style.display = "none";
@@ -374,6 +375,7 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
+        hula.style.display = "none";
         gamestartObj.style.display = "none";
         gameoverObj.style.display = "none";
         roleObj.style.display = "none";
@@ -382,7 +384,7 @@ function ScreenChange(index) {
     }
     else if (index == 2) {
         //场景2 结束界面
-
+        hula.style.display = "block";
         the.style.display = "none";
         gamestartObj.style.display = "none";
         roleObj.style.display = "none";
@@ -404,6 +406,7 @@ function ScreenChange(index) {
 
     else if (index == 3) {
         //场景3 角色选择
+        hula.style.display = "none";
         roleObj.style.display = "block";
         the.style.display = "none";
         gamestartObj.style.display = "none";
@@ -523,7 +526,7 @@ function commitInfo() {
 
 
 ////////////////微信接口/////////////////
-var imgUrl = 'http://gwuhaolin.github.io/Game-5/baba/assets/notice.png';
+var imgUrl = 'http://gwuhaolin.github.io/Game-5/baba/assets/share.png';
 var lineLink = ' http://42.96.157.54:13319/g0/baba/index.html';
 var shareTitle = '爸爸去哪儿了';
 var descContent = '爸爸去哪儿了';
