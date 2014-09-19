@@ -28,15 +28,15 @@ var BoyName;
 /**
  * 选择小孩名字中文
  */
-var childname='';
+var childname = '';
 
 
 /**
  * 结束辞
  */
-var GameOverSpan ={
-    gameoverComments:0,
-    fight:0
+var GameOverSpan = {
+    gameoverComments: 0,
+    fight: 0
 };
 
 
@@ -132,7 +132,6 @@ var Boy;
  * 显示给用户的文字
  */
 var ShowLabel;
-
 
 
 var main_state = {
@@ -321,8 +320,9 @@ function gameOver() {
     Boy.play('cry');
     //把网页的标题设置为分数,便于分享到朋友圈
     document.title = '我获得了' + score + '分';
-    timer.add(DelayTime * 2, ScreenChange, this, 2);
-    console.log("you chose:"+BoyName);
+    shareTitle = '我给' + childname + '喂了' + score + '个食物，成为' + GameOverSpan.gameoverComments + '快来喂萌娃吧~';
+    descContent = '我给' + childname + '喂了' + score + '个食物，成为' + GameOverSpan.gameoverComments + '快来喂萌娃吧~';
+    timer.add(DelayTime, ScreenChange, this, 2);
 }
 
 /**
@@ -431,39 +431,50 @@ function roleChoose(name, id) {
  * 转换小孩名字
  * @param name 小孩拼音名字
  */
-function ChangeName(name){
-    switch (name){
-        case "joe":childname = "Joe";break;
-        case "yangyangyang":childname ="杨阳洋";break;
-        case "feynman":childname ="Feynman";break;
-        case "duoduo":childname ="黄多多";break;
-        case "grace":childname ="姐姐";break;
-        case "beier":childname ="贝儿";break;
-        default :break;
+function ChangeName(name) {
+    switch (name) {
+        case "joe":
+            childname = "Joe";
+            break;
+        case "yangyangyang":
+            childname = "杨阳洋";
+            break;
+        case "feynman":
+            childname = "Feynman";
+            break;
+        case "duoduo":
+            childname = "黄多多";
+            break;
+        case "grace":
+            childname = "姐姐";
+            break;
+        case "beier":
+            childname = "贝儿";
+            break;
+        default :
+            break;
     }
 
     return childname;
 }
 
-function ChangeComments(score){
+function ChangeComments(score) {
 
-    var fightspan = score/3*5;
-    GameOverSpan.fight = fightspan.toFixed(0)+"%";
+    var fightspan = score / 3 * 5;
+    GameOverSpan.fight = fightspan.toFixed(0) + "%";
 
-    if(fightspan < 25 ){//百分比
+    if (fightspan < 25) {//百分比
         GameOverSpan.gameoverComments = "坑娃老爹";
     }
-    else if (fightspan >= 25 && fightspan < 50 ){
+    else if (fightspan >= 25 && fightspan < 50) {
         GameOverSpan.gameoverComments = "靠谱老爸";
     }
-    else
-    {
+    else {
         GameOverSpan.gameoverComments = "超级奶爸";
     }
     return   GameOverSpan;
 
 }
-
 
 
 /////////////////信息收集////////////////////
@@ -514,7 +525,8 @@ function commitInfo() {
 ////////////////微信接口/////////////////
 var imgUrl = 'https://github.com/gwuhaolin/Game-5/blob/gh-pages/baba/assets/notice.png';
 var lineLink = 'https://github.com/gwuhaolin/Game-5/blob/gh-pages/baba/index.html';
-var shareTitle = '我给'+childname+'喂了'+score+'个食物，成为'+GameOverSpan.gameoverComments+'快来喂萌娃吧~';
+var shareTitle = '爸爸去哪儿了';
+var descContent = '爸爸去哪儿了';
 var appid = 'wx5c6c73bc34fc424e';
 
 function shareFriend() {
@@ -562,5 +574,6 @@ document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         shareWeibo();
     });
 }, false);
+
 
 
