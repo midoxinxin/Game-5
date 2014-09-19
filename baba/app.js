@@ -30,7 +30,6 @@ var BoyName;
  */
 var childname = '';
 
-
 /**
  * 结束辞
  */
@@ -401,7 +400,6 @@ function ScreenChange(index) {
         thescore.innerHTML = score;
 
         console.log("开屏场景：" + gamestartObj.style.display + "  游戏界面：" + the.style.display + "  结束界面：" + gameoverObj.style.display + "   角色界面：" + roleObj.style.display);
-        $.getScript("http://static.whonow.cn/wap/isWhonow3.js");
     }
 
     else if (index == 3) {
