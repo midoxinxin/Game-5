@@ -350,7 +350,7 @@ function RoleOpen() {
  * 当index=2:进入结束界面
  */
 function ScreenChange(index) {
-    var hula = document.getElementById("isWhonowDiv");
+    //var hula = document.getElementById("isWhonowDiv");
     var the = document.getElementById("the");
     var gamestartObj = document.getElementById("GameStart");
     var gamestartMain = document.getElementById("gamestartMain");
@@ -374,7 +374,7 @@ function ScreenChange(index) {
     }
     else if (index == 1) {
         //场景1 游戏界面
-        hula.style.display = "none";
+        //hula.style.display = "none";
         gamestartObj.style.display = "none";
         gameoverObj.style.display = "none";
         roleObj.style.display = "none";
@@ -383,7 +383,7 @@ function ScreenChange(index) {
     }
     else if (index == 2) {
         //场景2 结束界面
-        hula.style.display = "block";
+        //hula.style.display = "block";
         the.style.display = "none";
         gamestartObj.style.display = "none";
         roleObj.style.display = "none";
@@ -404,7 +404,7 @@ function ScreenChange(index) {
 
     else if (index == 3) {
         //场景3 角色选择
-        hula.style.display = "none";
+        //hula.style.display = "none";
         roleObj.style.display = "block";
         the.style.display = "none";
         gamestartObj.style.display = "none";
